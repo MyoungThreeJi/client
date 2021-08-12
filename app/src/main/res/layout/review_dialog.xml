@@ -130,6 +130,6 @@
             android:layout_gravity="center_horizontal"
             android:text="Save"
             android:textSize="15dp"
-            android:background="#FFDDD"/>
+            android:backgroundTint="@color/pink"/>
     </LinearLayout>
 </LinearLayout>
