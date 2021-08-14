@@ -66,7 +66,7 @@ class DetailListFragment : Fragment() {
             val fragmentA = ReviewFragment()
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
-
+//o
             bundle.putString("name1", "h")
             fragmentA.arguments=bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
