@@ -42,7 +42,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp">
+                android:layout_marginLeft="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,7 +61,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp">
+
+                android:layout_marginLeft="10dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -79,7 +80,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp">
+
+                android:layout_marginLeft="10dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -97,7 +99,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp">
+
+                android:layout_marginLeft="10dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -116,11 +119,12 @@
                 android:id="@+id/review_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+
                 android:layout_marginTop="15dp"
                 android:textSize="25dp"
                 android:textColor="@color/black"
-                android:text="리뷰내용"/>
+                android:text="리뷰내용"
+                android:layout_marginLeft="10dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

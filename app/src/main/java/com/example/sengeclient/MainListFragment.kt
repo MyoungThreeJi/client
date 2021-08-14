@@ -1,27 +1,21 @@
 package com.example.sengeclient
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapp.padInfo
-import com.example.myapp.padInfoAdapter
+
+
 import kotlinx.android.synthetic.main.fragment_main_list.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [MainListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MainListFragment : Fragment() {
-    private lateinit var adapter:padInfoAdapter
+    private lateinit var adapter: padInfoAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,12 +40,30 @@ class MainListFragment : Fragment() {
         adapter = padInfoAdapter()
         recyclerView1.adapter = adapter
 
-        adapter.items.add(padInfo(8,"유한컴벌리","생리대이름",7))
-        adapter.items.add(padInfo(9,"유한컴벌리","유한",7))
+        adapter.items.add(padInfo(8, "유한컴벌리", "생리대이름", 7))
+        adapter.items.add(padInfo(9, "유한컴벌리", "유한", 7))
         adapter.notifyDataSetChanged()
 
+        adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
+                val fragmentManager3 = activity!!.supportFragmentManager
+                 var transaction3: FragmentTransaction
+                val fragmentA = DetailListFragment()
+                transaction3 = fragmentManager3.beginTransaction()
+                val bundle = Bundle()
+
+                bundle.putString("name1", "h")
+                fragmentA.arguments=bundle
+                val transaction = activity!!.supportFragmentManager.beginTransaction()
+                transaction.add(R.id.container,DetailListFragment())
+                transaction.replace(R.id.container, DetailListFragment().apply { arguments = bundle })
+                transaction.commit()
 
 
+
+            }
+
+
+        })
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.myapp
+package com.example.sengeclient
 
 import android.media.Image
 
