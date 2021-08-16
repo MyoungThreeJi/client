@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 
 import kotlinx.android.synthetic.main.fragment_main_list.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainListFragment : Fragment() {
@@ -32,19 +37,46 @@ class MainListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val layoutManager = LinearLayoutManager(activity)
+       val layoutManager = LinearLayoutManager(activity)
         layoutManager.setReverseLayout(true)
         layoutManager.setStackFromEnd(true)
         recyclerView1.layoutManager = layoutManager
+        //recyclerView1.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = padInfoAdapter()
-        recyclerView1.adapter = adapter
+        //adapter = padInfoAdapter()
+        // recyclerView1.adapter = adapter
 
-        adapter.items.add(padInfo(8, "유한컴벌리", "생리대이름", 7))
-        adapter.items.add(padInfo(9, "유한컴벌리", "유한", 7))
-        adapter.notifyDataSetChanged()
+        // adapter.items.add(padInfo(8, "유한컴벌리", "생리대이름", "h"))
+        // adapter.items.add(padInfo(9, "유한컴벌리", "유한", 7))
+        //adapter.notifyDataSetChanged()
 
-        adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
+        var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
+            GsonConverterFactory.create()).build()
+        var apiService = retrofit.create(ApiService::class.java)
+        var tests = apiService.get_pad("json")
+        tests.enqueue(object : Callback<List<padInfo>> {
+            override fun onResponse(call: Call<List<padInfo>>, response: Response<List<padInfo>>) {
+                if (response.isSuccessful) {
+                    var mList = response.body()!!
+
+
+                        recyclerView1.adapter = padInfoAdapter(mList)
+
+
+                }
+            }
+
+            override fun onFailure(call: Call<List<padInfo>>, t: Throwable) {
+                Log.e("D_tests", "OnFailuer+${t.message}")
+            }
+        }
+
+        )
+
+
+
+
+       /* adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
             override fun onClick(view: View, position: Int) {
                 val fragmentManager3 = activity!!.supportFragmentManager
                  var transaction3: FragmentTransaction
@@ -64,6 +96,7 @@ class MainListFragment : Fragment() {
             }
 
 
-        })
+        })*/
     }
 }
+
