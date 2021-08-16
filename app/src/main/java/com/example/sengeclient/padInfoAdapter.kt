@@ -8,9 +8,9 @@ import com.example.sengeclient.MainListFragment
 import com.example.sengeclient.R
 import kotlinx.android.synthetic.main.padinfo.view.*
 
-class padInfoAdapter:RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
+class padInfoAdapter(var items:List<padInfo>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
 
-    var items = ArrayList<padInfo>()
+
     interface ItemClickListener {
         fun onClick(view: View, position: Int)
     }
@@ -47,9 +47,9 @@ class padInfoAdapter:RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
 
 
         fun setItem(item:padInfo){
-            itemView.brand.text = item.brand
-            itemView.product.text = item.product
-            itemView.score.text = item.score.toString()
+            itemView.lbrand.text = item.manufacturer
+            itemView.lproduct.text = item.name
+            //itemView.score.text = item.score.toString()
 
 
 
