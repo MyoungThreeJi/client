@@ -22,7 +22,9 @@ class padInfoAdapter(var items:List<padInfo>):RecyclerView.Adapter<padInfoAdapte
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         fun setItem(item:padInfo){
             //itemView.img_register
-            //여기도 작성해야함
+            itemView.brand.text=item.brand
+            itemView.product.text=item.product
+            itemView.score.text=item.score.toString()
         }
     }
 }
