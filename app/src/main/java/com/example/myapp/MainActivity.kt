@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
 
         with(supportFragmentManager.beginTransaction()) {
-            val fragment5 = Map()
+            val fragment5 = MainListFragment()
             replace(R.id.container, fragment5)
             commit()
         }
