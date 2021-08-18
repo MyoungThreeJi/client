@@ -40,6 +40,5 @@ class MainListFragment : Fragment() {
 
         adapter.items.add(padInfo("유한컴벌리", "생리대이름", 8))
         adapter.items.add(padInfo("유한컴벌리", "유한", 7))
-        //adapter.notifyDataSetChanged()
     }
 }
