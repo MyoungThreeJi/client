@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainListFragment : Fragment() {
-    private lateinit var adapter: padInfoAdapter
+    lateinit var adapter: padInfoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +43,8 @@ class MainListFragment : Fragment() {
         recyclerView1.layoutManager = layoutManager
         //recyclerView1.layoutManager = LinearLayoutManager(requireContext())
 
-        //adapter = padInfoAdapter()
-        // recyclerView1.adapter = adapter
+
+        //recyclerView1.adapter = adapter
 
         // adapter.items.add(padInfo(8, "유한컴벌리", "생리대이름", "h"))
         // adapter.items.add(padInfo(9, "유한컴벌리", "유한", 7))
@@ -60,7 +60,36 @@ class MainListFragment : Fragment() {
                     var mList = response.body()!!
 
 
-                        recyclerView1.adapter = padInfoAdapter(mList)
+                        //recyclerView1.adapter = padInfoAdapter(mList)
+                    adapter = padInfoAdapter(mList)
+                    recyclerView1.adapter= adapter
+
+
+                    adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
+                        override fun onClick(view: View, position: Int) {
+                            val fragmentManager3 = activity!!.supportFragmentManager
+                            var transaction3: FragmentTransaction
+                            val fragmentA = DetailListFragment()
+                            transaction3 = fragmentManager3.beginTransaction()
+                            val bundle = Bundle()
+
+                            bundle.putString("name1", "h")
+                            fragmentA.arguments=bundle
+                            val transaction = activity!!.supportFragmentManager.beginTransaction()
+                            transaction.add(R.id.container,DetailListFragment())
+                            transaction.replace(R.id.container, DetailListFragment().apply { arguments = bundle })
+                            transaction.commit()
+
+
+
+                        }
+
+
+                    })
+
+
+
+
 
 
                 }
@@ -74,29 +103,6 @@ class MainListFragment : Fragment() {
         )
 
 
-
-
-       /* adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-                val fragmentManager3 = activity!!.supportFragmentManager
-                 var transaction3: FragmentTransaction
-                val fragmentA = DetailListFragment()
-                transaction3 = fragmentManager3.beginTransaction()
-                val bundle = Bundle()
-
-                bundle.putString("name1", "h")
-                fragmentA.arguments=bundle
-                val transaction = activity!!.supportFragmentManager.beginTransaction()
-                transaction.add(R.id.container,DetailListFragment())
-                transaction.replace(R.id.container, DetailListFragment().apply { arguments = bundle })
-                transaction.commit()
-
-
-
-            }
-
-
-        })*/
     }
 }
 
