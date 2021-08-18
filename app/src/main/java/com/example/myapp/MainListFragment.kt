@@ -29,17 +29,17 @@ class MainListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val layoutManager = LinearLayoutManager(activity)
-        layoutManager.setReverseLayout(true)
-        layoutManager.setStackFromEnd(true)
+        val layoutManager = LinearLayoutManager(this.activity)
+        //layoutManager.setReverseLayout(true)
+        //layoutManager.setStackFromEnd(true)
         recyclerView1.layoutManager = layoutManager
         //recyclerView1.layoutManager = LinearLayoutManager(requireContext())
 
-        //adapter = padInfoAdapter()
-        // recyclerView1.adapter = adapter
+        adapter=padInfoAdapter()
+        recyclerView1.adapter = adapter
 
-        // adapter.items.add(padInfo(8, "유한컴벌리", "생리대이름", "h"))
-        // adapter.items.add(padInfo(9, "유한컴벌리", "유한", 7))
+        adapter.items.add(padInfo("유한컴벌리", "생리대이름", 8))
+        adapter.items.add(padInfo("유한컴벌리", "유한", 7))
         //adapter.notifyDataSetChanged()
     }
 }
