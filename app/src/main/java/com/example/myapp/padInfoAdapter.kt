@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.padinfo.view.*
 
-class padInfoAdapter(var items:List<padInfo>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
+class padInfoAdapter():RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
+    var items=ArrayList<padInfo>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):padInfoAdapter.ViewHolder {
         val itemView=LayoutInflater.from(parent.context).inflate(R.layout.padinfo,parent,false)
         return ViewHolder(itemView)
