@@ -24,13 +24,11 @@ class Map : Fragment(),OnMapReadyCallback{
 
     private lateinit var map:GoogleMap
     private lateinit var locationClient: FusedLocationProviderClient
-    private lateinit var addressMaker:Geocoder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("fragment","ddddd")
 
-        addressMaker= Geocoder(this.activity)
 
         AndPermission.with(this).runtime().permission(Permission.Group.LOCATION)
             .onGranted { permissions ->
