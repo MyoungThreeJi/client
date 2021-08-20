@@ -32,10 +32,10 @@ class Map : Fragment(),OnMapReadyCallback{
     private lateinit var locationClient: FusedLocationProviderClient
 
     val current_location_marker=MarkerOptions()
-
+//d
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("fragment","onCreate실행")
+        Log.d("fragment","ddddd")
 
         AndPermission.with(this).runtime().permission(Permission.Group.LOCATION)
             .onGranted { permissions ->
