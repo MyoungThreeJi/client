@@ -1,6 +1,5 @@
 package com.example.myapp
-import android.Manifest
-import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
@@ -9,16 +8,11 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
-import com.google.android.gms.maps.model.BitmapDescriptor
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.runtime.Permission
-
 
 
 private const val ARG_PARAM1 = "param1"
@@ -30,12 +24,14 @@ class Map : Fragment(),OnMapReadyCallback{
 
     private lateinit var map:GoogleMap
     private lateinit var locationClient: FusedLocationProviderClient
+    private lateinit var addressMaker:Geocoder
 
-    val current_location_marker=MarkerOptions()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("fragment","onCreate실행")
+
+        addressMaker= Geocoder(this.activity)
 
         AndPermission.with(this).runtime().permission(Permission.Group.LOCATION)
             .onGranted { permissions ->
@@ -73,12 +69,14 @@ class Map : Fragment(),OnMapReadyCallback{
         try {
             locationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(location!!.latitude, location.longitude),15f))
+                    val lat=location!!.latitude
+                    val lng=location.longitude
 
-                    current_location_marker.position(LatLng(location.latitude,location.longitude))
-                    current_location_marker.title("현재 내 위치")
-                    current_location_marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.location))
-                    map.addMarker(current_location_marker)
+                    //이미지 필요없이 옵션 사용해서 마커 추가
+                    map.addMarker(MarkerOptions().position(LatLng(lat,lng)).title("현재 내 위치")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
+
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,lng),15f))
                 }
         }
         catch(e:SecurityException){
@@ -116,6 +114,8 @@ class Map : Fragment(),OnMapReadyCallback{
                         }
                         val curPoint=LatLng(it.locations[0].latitude,it.locations[0].longitude)
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint,15f))
+                        map.addMarker(MarkerOptions().position(LatLng(it.locations[0].latitude,it.locations[0].longitude))
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)))
                     }
                 }
             }
