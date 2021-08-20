@@ -26,10 +26,9 @@ class Map : Fragment(),OnMapReadyCallback{
     private lateinit var locationClient: FusedLocationProviderClient
     private lateinit var addressMaker:Geocoder
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("fragment","onCreate실행")
+        Log.d("fragment","ddddd")
 
         addressMaker= Geocoder(this.activity)
 
