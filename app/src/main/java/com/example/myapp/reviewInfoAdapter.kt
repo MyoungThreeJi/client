@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.reviewinfo.view.*
 
-class reviewInfoAdapter(): RecyclerView.Adapter<reviewInfoAdapter.ViewHolder>(){
-    var items=ArrayList<reviewInfo>()
-    
+
+class reviewInfoAdapter : RecyclerView.Adapter<reviewInfoAdapter.ViewHolder>(){
+    val items=ArrayList<reviewInfo>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView=LayoutInflater.from(parent.context).inflate(R.layout.reviewinfo,parent,false)
         return ViewHolder(itemView)
