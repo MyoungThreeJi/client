@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.android.synthetic.main.padinfo.view.*
 
-class padInfoAdapter(var items:List<padInfo>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
+class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
 
 
     interface ItemClickListener {
@@ -45,7 +45,7 @@ class padInfoAdapter(var items:List<padInfo>):RecyclerView.Adapter<padInfoAdapte
 
 
 
-        fun setItem(item:padInfo){
+        fun setItem(item:padlist){
             itemView.lbrand.text = item.manufacturer
             itemView.lproduct.text = item.name
             //itemView.score.text = item.score.toString()

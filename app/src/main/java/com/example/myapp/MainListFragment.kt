@@ -54,9 +54,9 @@ class MainListFragment : Fragment() {
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
             GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
-        var tests = apiService.get_pad("json")
-        tests.enqueue(object : Callback<List<padInfo>> {
-            override fun onResponse(call: Call<List<padInfo>>, response: Response<List<padInfo>>) {
+        var tests = apiService.get_padid("json")
+        tests.enqueue(object : Callback<List<padlist>> {
+            override fun onResponse(call: Call<List<padlist>>, response: Response<List<padlist>>) {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
 
@@ -74,7 +74,7 @@ class MainListFragment : Fragment() {
                             transaction3 = fragmentManager3.beginTransaction()
                             val bundle = Bundle()
 
-                            bundle.putString("name1", "h")
+                            bundle.putInt("position",position)
                             fragmentA.arguments=bundle
                             val transaction = activity!!.supportFragmentManager.beginTransaction()
                             transaction.add(R.id.container,DetailListFragment())
@@ -96,7 +96,7 @@ class MainListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<padInfo>>, t: Throwable) {
+            override fun onFailure(call: Call<List<padlist>>, t: Throwable) {
                 Log.e("D_tests", "OnFailuer+${t.message}")
             }
         }
