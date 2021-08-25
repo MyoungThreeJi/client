@@ -1,9 +1,7 @@
 package com.example.myapp
 
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
     companion object{
@@ -19,5 +17,9 @@ interface ApiService {
     fun get_id(
             @Path("id") id:Int):Call<padlist>
 
+    @POST("v1/review/")
+    fun reg_review(@Body review:p_reviewInfo):Call<reviewInfo>
 
+    @GET("v1/review/")
+    fun get_review(@Query("format") json:String):Call<List<reviewInfo>>
 }
