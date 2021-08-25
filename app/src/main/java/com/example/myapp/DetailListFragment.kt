@@ -24,6 +24,7 @@ import java.net.URL
 
 class DetailListFragment : Fragment() {
     private lateinit var adapter:ListdetailAdapter
+     var idpo:Int=0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var root =inflater.inflate(R.layout.fragment_detail_list, container, false)
@@ -67,7 +68,7 @@ class DetailListFragment : Fragment() {
         adapter = ListdetailAdapter()
         recy.adapter = adapter
 
-        val idpo= po!! -400;
+        idpo = po!! - 440;
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
                 GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
@@ -111,8 +112,7 @@ class DetailListFragment : Fragment() {
             val fragmentA = Detail_IngreFragment()
             transaction3 = fragmentManager3.beginTransaction()
             val bundle = Bundle()
-
-            bundle.putString("name1", "h")
+            bundle.putInt("idpo", idpo)
             fragmentA.arguments=bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.add(R.id.container,Detail_IngreFragment())

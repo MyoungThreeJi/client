@@ -12,6 +12,7 @@ import com.example.myapp.R
 
 
 import kotlinx.android.synthetic.main.fragment_main_list.*
+import kotlinx.android.synthetic.main.fragment_main_list.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainListFragment : Fragment() {
-    lateinit var adapter: padInfoAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,20 +29,12 @@ class MainListFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var root=inflater.inflate(R.layout.fragment_main_list, container, false)
-
-
-
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-       val layoutManager = LinearLayoutManager(activity)
+        val layoutManager = LinearLayoutManager(activity)
         layoutManager.setReverseLayout(true)
         layoutManager.setStackFromEnd(true)
-        recyclerView1.layoutManager = layoutManager
+        root.recyclerView1.layoutManager = layoutManager
+        lateinit var adapter: padInfoAdapter
+
         //recyclerView1.layoutManager = LinearLayoutManager(requireContext())
 
 
@@ -52,7 +45,7 @@ class MainListFragment : Fragment() {
         //adapter.notifyDataSetChanged()
 
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
-            GsonConverterFactory.create()).build()
+                GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
         var tests = apiService.get_padid("json")
         tests.enqueue(object : Callback<List<padlist>> {
@@ -61,17 +54,14 @@ class MainListFragment : Fragment() {
                     var mList = response.body()!!
 
 
-                        //recyclerView1.adapter = padInfoAdapter(mList)
+                    //recyclerView1.adapter = padInfoAdapter(mList)
                     adapter = padInfoAdapter(mList)
-                    recyclerView1.adapter= adapter
-
-
+                    root.recyclerView1.adapter= adapter
                     adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
                         override fun onClick(view: View, position: Int) {
-                            val fragmentManager3 = activity!!.supportFragmentManager
-                            var transaction3: FragmentTransaction
+
                             val fragmentA = DetailListFragment()
-                            transaction3 = fragmentManager3.beginTransaction()
+
                             val bundle = Bundle()
 
                             bundle.putInt("position",position)
@@ -87,12 +77,6 @@ class MainListFragment : Fragment() {
 
 
                     })
-
-
-
-
-
-
                 }
             }
 
@@ -102,6 +86,16 @@ class MainListFragment : Fragment() {
         }
 
         )
+
+
+
+
+
+        return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
 
     }
