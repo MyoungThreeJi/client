@@ -9,12 +9,12 @@ import android.widget.BaseExpandableListAdapter
 import kotlinx.android.synthetic.main.menu_child.view.*
 import kotlinx.android.synthetic.main.menu_parent.view.*
 
-class ExpandableListAdapter(private val context: Context, private val parents: MutableList<String>, private val childList: MutableList<MutableList<String>>
+class ExpandableListAdapter(private val context: Context, val pitems: List<parent>, val parents: MutableList<String>, private val childList: MutableList<MutableList<String>>
 ) : BaseExpandableListAdapter() {
 
-    override fun getGroupCount() = parents.size
+    override fun getGroupCount() = pitems.size
     override fun getChildrenCount(parent: Int) = childList[parent].size
-    override fun getGroup(parent: Int) = parents[parent]
+    override fun getGroup(parent: Int) = pitems[parent]
     override fun getChild(parent: Int, child: Int): String = childList[parent][child]
     override fun getGroupId(parent: Int) = parent.toLong()
     override fun getChildId(parent: Int, child: Int) = child.toLong()
@@ -29,7 +29,9 @@ class ExpandableListAdapter(private val context: Context, private val parents: M
     : View {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val parentView = inflater.inflate(R.layout.menu_parent, parentview, false)
-        parentView.tv_list_title.text = parents[parent]
+        parentView.tv_list_title.text = pitems[parent].name
+        parentView.average.text = pitems[parent].average.toString()
+        parentView.detection.text = pitems[parent].detection.toString()
 
         setArrow(parent, parentView, isExpanded)
         return parentView }
