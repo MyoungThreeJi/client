@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.effectdialog.view.*
 
 import kotlinx.android.synthetic.main.fragment_detail__ingre.*
 import kotlinx.android.synthetic.main.fragment_detail_list.*
@@ -138,6 +140,22 @@ class Detail_IngreFragment : Fragment() {
                     }
                     sumin.setText(sum.toString())
 
+
+                    adapter.setItemClickListener(object : IngreAdapter.ItemClickListener {
+                        override fun onClick(view: View, position: Int) {
+                            var dlg = AlertDialog.Builder(requireContext())
+                            var dialogView = View.inflate(context, R.layout.effectdialog, null)
+                            dlg.setView(dialogView)
+                            dialogView.effectds.setText(effects.get(position))
+
+                            dlg.setPositiveButton("확인") { dialog, which -> }
+
+                            dlg.show()
+
+
+
+                        }})
+
                 }
             }
 
@@ -146,12 +164,6 @@ class Detail_IngreFragment : Fragment() {
             }
         })
 
-        adapter.setItemClickListener(object : IngreAdapter.ItemClickListener {
-            override fun onClick(view: View, position: Int) {
-
-
-
-            }})
 
 
     }
