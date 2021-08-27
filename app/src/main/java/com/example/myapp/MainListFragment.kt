@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapp.R
@@ -60,15 +61,18 @@ class MainListFragment : Fragment() {
                     adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
                         override fun onClick(view: View, position: Int) {
 
-                            val fragmentA = DetailListFragment()
+                            val fragmentA = DetailListFragment(position)
+                            Log.d("position","position=${position}")
 
                             val bundle = Bundle()
 
-                            bundle.putInt("position",position)
+                            //bundle.putInt("position",position)
                             fragmentA.arguments=bundle
                             val transaction = activity!!.supportFragmentManager.beginTransaction()
-                            transaction.add(R.id.container,DetailListFragment())
-                            transaction.replace(R.id.container, DetailListFragment().apply { arguments = bundle })
+                            //transaction.add(R.id.container,DetailListFragment())
+                            transaction.add(R.id.container,fragmentA)
+                            //transaction.replace(R.id.container, DetailListFragment().apply { arguments = bundle })
+                            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
                             transaction.commit()
 
 
