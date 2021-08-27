@@ -52,7 +52,7 @@ class Map : Fragment(),OnMapReadyCallback{
         Log.d("fragment","onCreateView실행")
         val view:View= inflater.inflate(R.layout.fragment_map,container,false)
 
-        btn=view.findViewById<ImageButton>(R.id.my_trace)
+        //btn=view.findViewById<ImageButton>(R.id.my_trace)
 
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.sanitarypad_map) as SupportMapFragment
