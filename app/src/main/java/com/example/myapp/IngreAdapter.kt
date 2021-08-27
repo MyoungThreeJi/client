@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.menu_parent.view.*
 
 import kotlinx.android.synthetic.main.padinfo.view.*
 
-class IngreAdapter(var items:ArrayList<parent>):RecyclerView.Adapter<IngreAdapter.ViewHolder>(){
+class IngreAdapter(var items:MutableList<parent>):RecyclerView.Adapter<IngreAdapter.ViewHolder>(){
 
 
     interface ItemClickListener {
@@ -51,8 +51,11 @@ class IngreAdapter(var items:ArrayList<parent>):RecyclerView.Adapter<IngreAdapte
             itemView.average.text = item.average.toString()
             itemView.detection.text = item.detection.toString()
             //itemView.score.text = item.score.toString()
-
-
+            if(item.image.toString().equals("고")){
+            itemView.dimage.setImageResource(R.drawable.high)}
+                        else{
+                itemView.dimage.setImageResource(R.drawable.low)
+                        }
 
 
         }

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import kotlinx.android.synthetic.main.fragment_detail__ingre.*
@@ -20,11 +21,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class Detail_IngreFragment : Fragment() {
     private lateinit var adapter:IngreAdapter
-    lateinit var list1: ArrayList<Integer>
+
     var ints = mutableListOf<Integer>()
     var names= mutableListOf<String>()
     var averages= mutableListOf<Double>()
-
+    var detections= mutableListOf<Double>()
+    var images= mutableListOf<String>()
+    var effects= mutableListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,10 +48,11 @@ class Detail_IngreFragment : Fragment() {
         layoutManager.setReverseLayout(true)
         layoutManager.setStackFromEnd(true)
         inre.layoutManager = layoutManager
+        val dividerItemDecoration =
+                DividerItemDecoration(context, LinearLayoutManager(context).orientation)
 
-        lateinit var list2: ArrayList<String>
-        lateinit var list3: ArrayList<Double>
-        lateinit var list4: ArrayList<Double>
+        inre.addItemDecoration(dividerItemDecoration)
+
 
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
                 GsonConverterFactory.create()).build()
@@ -64,15 +68,19 @@ class Detail_IngreFragment : Fragment() {
                     Log.e("id",inlist.toString())
 
 
-                    for(i in 0 until 15){
+                    for(i in inlist.indices){
                         ints.add(inlist.get(i).id!!)
                         names.add(inlist.get(i).name!!)
                       averages.add(inlist.get(i).average!!)
+                        effects.add(inlist.get(i).sideEffect!!)
                          //list3.add(inlist.get(i).average!!)
                    }
                     Log.e("list1",ints.get(0).toString())
                     Log.e("namelist",names.get(0))
                     Log.e("averagelist",averages.get(0).toString())
+                    Log.e("intslist",ints.toString())
+                    ints.reverse()
+                    Log.e("intslist",ints.toString())
                 }
             }
 
@@ -89,28 +97,47 @@ class Detail_IngreFragment : Fragment() {
             override fun onResponse(call: Call<ArrayList<detectioninfo>>, response: Response<ArrayList<detectioninfo>>) {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
-                    Log.e("detection",mList.get(0).pad.toString())
-                  for(j in mList.indices) {
-                        if((mList.get(j).pad)!!.equals(po!!)){
-                            Log.e("detection",mList.get(0).pad.toString())
-                           if((mList.get(j).ingredient)!!.equals(ints.get(j))){
-                               // list4.add(mList.get(j).detection!!)
-                               Log.e("success",mList.get(0).pad.toString())
-                            }
+                    Log.e("detection", mList.get(0).pad.toString())
 
+                    for (i in mList.indices) {
+                        if ((mList.get(i).pad)!!.equals(po!!)) {
+
+                            detections.add(mList.get(i).detection!!)
 
                         }
 
-                                }
-                    /*
-                lateinit var d:ArrayList<parent>
-                    for(i in list4.indices){
-                    var reallist = parent("Dd",list2.get(i),list3.get(i),list4.get(i))
+                    }
+                    Log.e("success", detections.toString())
+                    detections.reverse()
+                    Log.e("success", detections.toString())
+                    var image:String
+                    for(i in detections.indices){
+                        if(averages.get(i)<detections.get(i)){
+                            images.add("고")
+                        }
+                        else{
+                            images.add("저")
+                        }
+
+                    }
+                    //l image:String?, val name:String?, val average: Double?, val detection: Double?)
+
+                    var d= mutableListOf<parent>()
+                    for(i in detections.indices){
+                    var reallist = parent(images.get(i),names.get(i),averages.get(i),detections.get(i))
                     d.add(reallist)
                         }
+                    Log.e("parentmake", d.toString())
                     adapter = IngreAdapter(d)
 
-                    inre.adapter= adapter*/
+                    inre.adapter= adapter
+                    var sum=0.0
+                    for(i in detections.indices){
+                        sum += detections.get(i)
+
+                    }
+                    sumin.setText(sum.toString())
+
                 }
             }
 
@@ -119,20 +146,15 @@ class Detail_IngreFragment : Fragment() {
             }
         })
 
-     /*   var sum=0.0
-        for(i in list4.indices){
-            sum += list4.get(i)
+        adapter.setItemClickListener(object : IngreAdapter.ItemClickListener {
+            override fun onClick(view: View, position: Int) {
 
-        }
-        sumin.setText(sum.toString())*/
 
+
+            }})
 
 
     }
-
-
-
-
 
 
 
