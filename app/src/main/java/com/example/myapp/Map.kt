@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
@@ -24,6 +26,7 @@ class Map : Fragment(),OnMapReadyCallback{
 
     private lateinit var map:GoogleMap
     private lateinit var locationClient: FusedLocationProviderClient
+    private lateinit var btn:ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,8 @@ class Map : Fragment(),OnMapReadyCallback{
     ): View? {
         Log.d("fragment","onCreateView실행")
         val view:View= inflater.inflate(R.layout.fragment_map,container,false)
+
+        //btn=view.findViewById<ImageButton>(R.id.my_trace)
 
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.sanitarypad_map) as SupportMapFragment
@@ -75,6 +80,15 @@ class Map : Fragment(),OnMapReadyCallback{
 
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,lng),15f))
                 }
+        }
+        catch(e:SecurityException){
+            e.printStackTrace()
+        }
+
+        try{
+            btn.setOnClickListener {
+                requestLocation()
+            }
         }
         catch(e:SecurityException){
             e.printStackTrace()

@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ReviewFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="제품 리뷰"
             android:layout_gravity="center_vertical"
-            android:textSize="25sp"
-            android:textColor="@color/black"/>
+            android:layout_marginTop="10dp"
+            android:text="제품 리뷰"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/total"
-            android:text="리뷰 개수"/>
+            android:text="리뷰 개수-" />
+
+        <TextView
+            android:id="@+id/num_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/reg_review"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="250dp"
+            android:backgroundTint="@color/pink"
+            android:text="+리뷰"
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reviewre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        />
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <ImageButton
-            android:id="@+id/reg_review"
-            android:layout_width="55sp"
-            android:layout_height="60sp"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/write"
-            android:layout_alignParentRight="true" />
-    </RelativeLayout>
 </LinearLayout>
