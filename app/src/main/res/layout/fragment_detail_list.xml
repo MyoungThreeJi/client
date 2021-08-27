@@ -95,134 +95,123 @@
             </LinearLayout>
 
 
+
             <View
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginTop="30dp"
-                android:background="#E1DCDC" />
+                android:background="#E1DCDC"/>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="성분"
+                    android:textSize="22dp"/>
+                <ImageButton
+                    android:layout_marginLeft="300dp"
+                    android:layout_gravity="right"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/gotodi"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <TextView
+
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="성분분석 랭킹"
+                    android:textSize="17dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3위"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#F9B7CC"
+                    android:textSize="17dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="성분분석 점수"
+                    android:textSize="17dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="8.9"
+                    android:textColor="#F9B7CC"
+                    android:textSize="17dp"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성분구성"
+                android:textSize="17dp"/>
 
-                <LinearLayout
-                    android:layout_marginTop="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="성분"
-                        android:textSize="22dp"/>
-                    <ImageButton
-                        android:layout_marginLeft="300dp"
-                        android:layout_gravity="right"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:id="@+id/gotodi"
-                        android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="성분분석 랭킹"
-                        android:textSize="17dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="3위"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#F9B7CC"
-                        android:textSize="17dp"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="성분분석 점수"
-                        android:textSize="17dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="8.9"
-                        android:textColor="#F9B7CC"
-                        android:textSize="17dp"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="성분구성"
-                        android:textSize="17dp"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginLeft="20dp"
-                        android:textColor="@color/black"
-                        android:layout_width="match_parent"
-                        android:layout_marginBottom="20dp"
-                        android:layout_height="100dp"
-                        android:id="@+id/recy"/>
-                </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_height="100dp"
+                android:id="@+id/recy"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="리뷰"
+                    android:textSize="22dp"/>
+                <ImageButton
+                    android:id="@+id/gotoreview"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_gravity="right"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="30dp"
-        android:background="#E1DCDC" />
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="리뷰"
-            android:textSize="22dp"/>
-        <ImageButton
-            android:id="@+id/gotoreview"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="300dp"
-            android:layout_gravity="right"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
-    </LinearLayout>
-
 </LinearLayout>
