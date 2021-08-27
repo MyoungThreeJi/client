@@ -1,7 +1,8 @@
 package com.example.myapp
 
 
-data class reviewInfo(val id:String?,val date:String?,
-                      val r1:Float?,val r2:Float?,val r3:Float?,val r4:Float?,val review:String?)
-//사진 어떤 형식으로 가져오는지 보고 수정해야함
-//별점 이름도 보고 수정
+data class reviewInfo(val pad:Int?,
+                      val star1:Float?,val star2:Float?,val star3:Float?,val star4:Float?,
+                      val content:String?, val created:String?)
+data class p_reviewInfo(val pad:Int?,val star1:Int?,val star2:Int?,val star3:Int?,val star4:Int?,
+                        val content:String?)

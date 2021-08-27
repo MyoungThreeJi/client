@@ -7,6 +7,12 @@
     tools:context=".Map">
 
     <!-- TODO: Update blank fragment layout -->
+<!--    <ImageButton-->
+<!--        android:id="@+id/my_trace"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/location" />-->
+
     <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
