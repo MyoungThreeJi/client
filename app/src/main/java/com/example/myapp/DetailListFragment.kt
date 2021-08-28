@@ -128,15 +128,15 @@ class DetailListFragment(position:Int) : Fragment() {
         gotoreview.setOnClickListener {
             val fragmentManager2 = requireActivity().supportFragmentManager
             var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment()
+            val fragmentA = ReviewFragment(idpo)
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
 
             bundle.putString("name1", "h")
             fragmentA.arguments=bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.add(R.id.container,ReviewFragment())
-            transaction.replace(R.id.container, ReviewFragment().apply { arguments = bundle })
+            transaction.add(R.id.container,fragmentA)
+            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
             transaction.commit()
 
 
