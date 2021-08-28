@@ -16,7 +16,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ReviewDialogFragment: DialogFragment() {
+class ReviewDialogFragment(id:Int): DialogFragment() {
+    var pad_id:Int=id
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?)
@@ -46,7 +48,7 @@ class ReviewDialogFragment: DialogFragment() {
 
                         val fragmentManager=requireActivity().supportFragmentManager
                         var transaction:FragmentTransaction
-                        val fragmentA=ReviewFragment()
+                        val fragmentA=ReviewFragment(pad_id)
                         transaction=fragmentManager.beginTransaction()
 
                         val bundle=Bundle()
@@ -68,6 +70,6 @@ class ReviewDialogFragment: DialogFragment() {
         }
     }
     fun getInstance():ReviewDialogFragment{
-        return ReviewDialogFragment()
+        return ReviewDialogFragment(pad_id)
     }
 }
