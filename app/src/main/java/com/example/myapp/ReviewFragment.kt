@@ -26,8 +26,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ReviewFragment : Fragment(){
+class ReviewFragment(id:Int) : Fragment(){
     private lateinit var adapter: reviewInfoAdapter
+    var get_id:Int=id
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -47,7 +49,7 @@ class ReviewFragment : Fragment(){
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL)
                 .addConverterFactory(GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
-        var reviews = apiService.get_review("json")
+        var reviews = apiService.get_review(get_id)
 
         reviews.enqueue(object : Callback<List<reviewInfo>> {
             override fun onResponse(
@@ -72,7 +74,7 @@ class ReviewFragment : Fragment(){
 
         reg_review.setOnClickListener {
             val bundle=Bundle()
-            var dialog:ReviewDialogFragment=ReviewDialogFragment().getInstance()
+            var dialog:ReviewDialogFragment=ReviewDialogFragment(get_id).getInstance()
             dialog.arguments=bundle
             activity?.supportFragmentManager?.let{fragmentManager->
                 dialog.show(
