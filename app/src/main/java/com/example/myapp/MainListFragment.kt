@@ -49,6 +49,7 @@ class MainListFragment : Fragment() {
                 GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
         var tests = apiService.get_padid("json")
+
         tests.enqueue(object : Callback<List<padlist>> {
             override fun onResponse(call: Call<List<padlist>>, response: Response<List<padlist>>) {
                 if (response.isSuccessful) {
