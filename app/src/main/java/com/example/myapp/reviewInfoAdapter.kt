@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.model.ResourceLoader
 import kotlinx.android.synthetic.main.reviewinfo.view.*
 import java.io.BufferedInputStream
@@ -41,29 +42,7 @@ class reviewInfoAdapter(var items: List<reviewInfo>) : RecyclerView.Adapter<revi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setItem(item: reviewInfo) {
-//            thread(start = true) {
-//                run {
-//                    var myFileUrl: URL? = null
-//                    try {
-//                        myFileUrl = URL(item.userImage)
-//                    } catch (e: MalformedURLException) {
-//                        e.printStackTrace()
-//                    }
-//                    try {
-//                        var conn: HttpURLConnection = myFileUrl!!.openConnection() as HttpURLConnection
-//                        conn.setDoInput(true)
-//                        conn.connect()
-//                        //val length:Int=conn.contentLength
-//                        val inStream: InputStream = conn.inputStream
-//
-//                        val img = BitmapFactory.decodeStream(inStream)
-//
-//                        itemView.profile.setImageBitmap(img)
-//                    } catch (e: IOException) {
-//                        e.printStackTrace()
-//                    }
-//                }
-//            }
+            Glide.with(itemView).load(item.userImage).into(itemView.profile)
             itemView.user_id.text = item.userName
             itemView.date.text = item.created
             itemView.rat1.rating = item.star1!!
