@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainListFragment : Fragment() {
 
-
+    var ints = mutableListOf<Int>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,16 +54,19 @@ class MainListFragment : Fragment() {
             override fun onResponse(call: Call<List<padlist>>, response: Response<List<padlist>>) {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
+                    for(i in mList.indices){
+                        ints.add(mList.get(i).id!!)}
 
+Log.e("rank",mList.get(0).rank!!.toString())
 
                     //recyclerView1.adapter = padInfoAdapter(mList)
                     adapter = padInfoAdapter(mList)
                     root.recyclerView1.adapter= adapter
                     adapter.setItemClickListener(object : padInfoAdapter.ItemClickListener {
                         override fun onClick(view: View, position: Int) {
-
-                            val fragmentA = DetailListFragment(position)
-                            Log.d("position","position=${position}")
+                            Log.e("rank",mList.get(position).rank!!.toString())
+                            val fragmentA = DetailListFragment(ints.get(position))
+                            //Log.d("position","position=${position}")
 
                             val bundle = Bundle()
 
