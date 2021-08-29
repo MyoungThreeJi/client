@@ -22,15 +22,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.URL
 
-class DetailListFragment : Fragment() {
+class DetailListFragment(position:Int) : Fragment() {
     private lateinit var adapter:ListdetailAdapter
-     var idpo:Int=0
+    var idpo:Int=442-position
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var root =inflater.inflate(R.layout.fragment_detail_list, container, false)
 
 
-
+        Log.d("id","id=${idpo}")
 
 
         return root
@@ -68,11 +69,12 @@ class DetailListFragment : Fragment() {
         adapter = ListdetailAdapter()
         recy.adapter = adapter
 
-        idpo = po!! - 440;
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
                 GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
-        var tests = apiService.get_id(idpo)
+
+        var tests=apiService.get_id(idpo)
+
         tests.enqueue(object : Callback<padlist> {
             override fun onResponse(call: Call<padlist>, response: Response<padlist>) {
                 if (response.isSuccessful) {
@@ -126,15 +128,15 @@ class DetailListFragment : Fragment() {
         gotoreview.setOnClickListener {
             val fragmentManager2 = requireActivity().supportFragmentManager
             var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment()
+            val fragmentA = ReviewFragment(idpo)
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
 
             bundle.putString("name1", "h")
             fragmentA.arguments=bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.add(R.id.container,ReviewFragment())
-            transaction.replace(R.id.container, ReviewFragment().apply { arguments = bundle })
+            transaction.add(R.id.container,fragmentA)
+            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
             transaction.commit()
 
 
