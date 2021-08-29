@@ -31,8 +31,8 @@ class MainListFragment : Fragment() {
         // Inflate the layout for this fragment
         var root=inflater.inflate(R.layout.fragment_main_list, container, false)
         val layoutManager = LinearLayoutManager(activity)
-        layoutManager.setReverseLayout(true)
-        layoutManager.setStackFromEnd(true)
+        //layoutManager.setReverseLayout(true)
+        //layoutManager.setStackFromEnd(true)
         root.recyclerView1.layoutManager = layoutManager
         lateinit var adapter: padInfoAdapter
 
@@ -55,9 +55,10 @@ class MainListFragment : Fragment() {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
                     for(i in mList.indices){
-                        ints.add(mList.get(i).id!!)}
+                        ints.add(mList.get(i).id!!)
+                    }
 
-Log.e("rank",mList.get(0).rank!!.toString())
+                    Log.e("rank",mList.get(0).rank!!.toString())
 
                     //recyclerView1.adapter = padInfoAdapter(mList)
                     adapter = padInfoAdapter(mList)

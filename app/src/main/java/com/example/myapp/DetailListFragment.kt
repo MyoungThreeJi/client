@@ -91,6 +91,8 @@ class DetailListFragment(position:Int) : Fragment() {
                     }
                     var bitmap: Bitmap = image_task.execute().get()
                     detailimg.setImageBitmap(bitmap)*/
+                    drank.setText(mList.rank.toString())
+                    dscore.setText(mList.safeScore.toString())
                     detailma.setText(mList.manufacturer.toString());
                     Log.e("D_tests",mList.name.toString())
                 }
