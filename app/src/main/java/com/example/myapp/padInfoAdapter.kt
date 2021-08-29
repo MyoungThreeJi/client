@@ -48,6 +48,7 @@ class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapte
         fun setItem(item:padlist){
             itemView.lbrand.text = item.manufacturer
             itemView.lproduct.text = item.name
+            itemView.score.text=item.safeScore.toString()
             //itemView.score.text = item.score.toString()
 
 
