@@ -1,36 +1,76 @@
 package com.example.myapp
 
+import android.content.ContentResolver
+import android.content.ContentValues
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.load.model.ResourceLoader
 import kotlinx.android.synthetic.main.reviewinfo.view.*
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.io.InputStream
+import java.lang.NullPointerException
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
+import java.net.URLConnection
+import kotlin.concurrent.thread
 
 
-class reviewInfoAdapter(var items:List<reviewInfo>) : RecyclerView.Adapter<reviewInfoAdapter.ViewHolder>(){
+class reviewInfoAdapter(var items: List<reviewInfo>) : RecyclerView.Adapter<reviewInfoAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.reviewinfo,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.reviewinfo, parent, false)
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item=items[position]
+        val item = items[position]
         holder.setItem(item)
     }
 
-    override fun getItemCount()=items.size
+    override fun getItemCount() = items.size
 
-    inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-        fun setItem(item:reviewInfo){
-            itemView.profile.setImageResource(R.drawable.heart)
-            itemView.user_id.text="익명의 리뷰어"
-            itemView.date.text=item.created
-            itemView.rat1.rating=item.star1!!
-            itemView.rat2.rating=item.star2!!
-            itemView.rat3.rating=item.star3!!
-            itemView.rat4.rating=item.star4!!
-            itemView.review_content.text=item.content
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun setItem(item: reviewInfo) {
+            thread(start = true) {
+                run {
+                    var myFileUrl: URL? = null
+                    try {
+                        myFileUrl = URL(item.userImage)
+                    } catch (e: MalformedURLException) {
+                        e.printStackTrace()
+                    }
+                    try {
+                        var conn: HttpURLConnection = myFileUrl!!.openConnection() as HttpURLConnection
+                        conn.setDoInput(true)
+                        conn.connect()
+                        //val length:Int=conn.contentLength
+                        val inStream: InputStream = conn.inputStream
+
+                        val img = BitmapFactory.decodeStream(inStream)
+
+                        itemView.profile.setImageBitmap(img)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            itemView.user_id.text = item.userName
+            itemView.date.text = item.created
+            itemView.rat1.rating = item.star1!!
+            itemView.rat2.rating = item.star2!!
+            itemView.rat3.rating = item.star3!!
+            itemView.rat4.rating = item.star4!!
+            itemView.review_content.text = item.content
         }
     }
 }
