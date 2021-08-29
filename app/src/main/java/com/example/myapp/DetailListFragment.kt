@@ -24,7 +24,7 @@ import java.net.URL
 
 class DetailListFragment(position:Int) : Fragment() {
     private lateinit var adapter:ListdetailAdapter
-    var idpo:Int=442-position
+    var idpo:Int=position
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -128,7 +128,7 @@ class DetailListFragment(position:Int) : Fragment() {
         gotoreview.setOnClickListener {
             val fragmentManager2 = requireActivity().supportFragmentManager
             var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment(idpo)
+            val fragmentA = ReviewFragment()
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
 

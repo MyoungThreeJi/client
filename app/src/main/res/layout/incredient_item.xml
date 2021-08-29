@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
  >
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,10 +14,16 @@
         android:text="핵산"
         android:textSize="15dp"
          />
-<SeekBar
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:progress="10"
-    android:max="200"
-    />
+
+
+    <SeekBar
+        android:id="@+id/sb_storemainoptiondistance_distance"
+        android:thumb="@drawable/seek_tumb"
+        android:progressDrawable="@drawable/seekbar"
+        android:max="4"
+        android:progress="2"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
