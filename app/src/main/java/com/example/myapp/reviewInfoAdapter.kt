@@ -41,29 +41,29 @@ class reviewInfoAdapter(var items: List<reviewInfo>) : RecyclerView.Adapter<revi
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setItem(item: reviewInfo) {
-            thread(start = true) {
-                run {
-                    var myFileUrl: URL? = null
-                    try {
-                        myFileUrl = URL(item.userImage)
-                    } catch (e: MalformedURLException) {
-                        e.printStackTrace()
-                    }
-                    try {
-                        var conn: HttpURLConnection = myFileUrl!!.openConnection() as HttpURLConnection
-                        conn.setDoInput(true)
-                        conn.connect()
-                        //val length:Int=conn.contentLength
-                        val inStream: InputStream = conn.inputStream
-
-                        val img = BitmapFactory.decodeStream(inStream)
-
-                        itemView.profile.setImageBitmap(img)
-                    } catch (e: IOException) {
-                        e.printStackTrace()
-                    }
-                }
-            }
+//            thread(start = true) {
+//                run {
+//                    var myFileUrl: URL? = null
+//                    try {
+//                        myFileUrl = URL(item.userImage)
+//                    } catch (e: MalformedURLException) {
+//                        e.printStackTrace()
+//                    }
+//                    try {
+//                        var conn: HttpURLConnection = myFileUrl!!.openConnection() as HttpURLConnection
+//                        conn.setDoInput(true)
+//                        conn.connect()
+//                        //val length:Int=conn.contentLength
+//                        val inStream: InputStream = conn.inputStream
+//
+//                        val img = BitmapFactory.decodeStream(inStream)
+//
+//                        itemView.profile.setImageBitmap(img)
+//                    } catch (e: IOException) {
+//                        e.printStackTrace()
+//                    }
+//                }
+//            }
             itemView.user_id.text = item.userName
             itemView.date.text = item.created
             itemView.rat1.rating = item.star1!!

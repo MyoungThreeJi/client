@@ -16,8 +16,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ReviewDialogFragment(): DialogFragment() {
-    //var pad_id:Int=id
+class ReviewDialogFragment(id:Int): DialogFragment() {
+    var pad_id:Int=id
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -37,7 +37,7 @@ class ReviewDialogFragment(): DialogFragment() {
         var apiService = retrofit.create(ApiService::class.java)
 
         view.post_review.setOnClickListener {
-            var reviewData=p_reviewInfo(2,rat1.rating.toInt(),rat2.rating.toInt(),rat3.rating.toInt(),rat4.rating.toInt(),r_content.text.toString())
+            var reviewData=p_reviewInfo(pad_id,rat1.rating.toInt(),rat2.rating.toInt(),rat3.rating.toInt(),rat4.rating.toInt(),r_content.text.toString())
             var review=apiService.reg_review(reviewData)
 
             review.enqueue(object: Callback<p_reviewInfo> {
@@ -48,7 +48,7 @@ class ReviewDialogFragment(): DialogFragment() {
 
                         val fragmentManager=requireActivity().supportFragmentManager
                         var transaction:FragmentTransaction
-                        val fragmentA=ReviewFragment()
+                        val fragmentA=ReviewFragment(pad_id)
                         transaction=fragmentManager.beginTransaction()
 
                         val bundle=Bundle()
@@ -70,6 +70,6 @@ class ReviewDialogFragment(): DialogFragment() {
         }
     }
     fun getInstance():ReviewDialogFragment{
-        return ReviewDialogFragment()
+        return ReviewDialogFragment(pad_id)
     }
 }

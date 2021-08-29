@@ -128,7 +128,7 @@ class DetailListFragment(position:Int) : Fragment() {
         gotoreview.setOnClickListener {
             val fragmentManager2 = requireActivity().supportFragmentManager
             var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment()
+            val fragmentA = ReviewFragment(idpo)
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
 
