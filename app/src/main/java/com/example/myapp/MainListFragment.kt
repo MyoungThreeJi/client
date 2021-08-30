@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.myapp.R
+import kotlinx.android.synthetic.main.fragment_detail_list.*
 
 
 import kotlinx.android.synthetic.main.fragment_main_list.*
@@ -19,10 +21,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URLDecoder
 
 
 class MainListFragment : Fragment() {
-
+    var images = mutableListOf<String>()
     var ints = mutableListOf<Int>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +59,7 @@ class MainListFragment : Fragment() {
                     var mList = response.body()!!
                     for(i in mList.indices){
                         ints.add(mList.get(i).id!!)
+                        images.add(mList.get(i).image!!)
                     }
 
                     Log.e("rank",mList.get(0).rank!!.toString())

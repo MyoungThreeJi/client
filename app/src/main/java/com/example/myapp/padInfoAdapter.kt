@@ -1,11 +1,15 @@
 package com.example.myapp
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_detail_list.*
 
 import kotlinx.android.synthetic.main.padinfo.view.*
+import java.net.URLDecoder
 
 class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
 
@@ -51,6 +55,8 @@ class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapte
             itemView.score.text=item.safeScore.toString()
             //itemView.score.text = item.score.toString()
 
+            var a= URLDecoder.decode(item.image!!.substring(ApiService.API_URL.length+1), "utf-8");
+            Glide.with(itemView).load(a).into(itemView.limg)
 
 
 
