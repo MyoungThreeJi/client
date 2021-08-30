@@ -57,6 +57,7 @@
                     android:textSize="15dp"/>
 
                 <RatingBar
+                    android:id="@+id/score_star"
                     android:layout_marginLeft="10dp"
                     android:textColor="@color/black"
                     android:layout_width="250dp"

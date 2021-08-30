@@ -27,7 +27,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ReviewFragment (id:Int): Fragment(){
-    public lateinit var scoreList:ArrayList<Float>
     private lateinit var adapter: reviewInfoAdapter
     var get_id:Int=id
 
@@ -60,24 +59,13 @@ class ReviewFragment (id:Int): Fragment(){
                 if (response.isSuccessful) {
                     var reviewList=response.body()!!
                     var reviews=ArrayList<reviewInfo>()
-                    scoreList=ArrayList<Float>()
                     var score:Float?=null
 
                     for(r in reviewList){
                         if(r.pad==get_id){
                             reviews.add(r)
-                            score=(r.star1!!+r.star2!!+r.star3!!+r.star4!!)/4
-                            scoreList!!.add(score)
                         }
                     }
-                    Log.d("scores",scoreList.toString())
-
-                    for(i in scoreList!!){
-                        score=score!!+i
-                    }
-
-                    Log.d("scores",score.toString())
-                    //DetailListFragment.review_score.setText((score!!.div(scoreList!!.size)).toString())
 
                     adapter = reviewInfoAdapter(reviews)
                     num_review.text=adapter.itemCount.toString()

@@ -25,6 +25,7 @@ import java.net.URL
 class DetailListFragment(position:Int) : Fragment() {
     private lateinit var adapter:ListdetailAdapter
     var idpo:Int=position
+    private lateinit var scoreList:ArrayList<Float>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -74,6 +75,7 @@ class DetailListFragment(position:Int) : Fragment() {
         var apiService = retrofit.create(ApiService::class.java)
 
         var tests=apiService.get_id(idpo)
+        var reviews=apiService.get_review("json")
 
         tests.enqueue(object : Callback<padlist> {
             override fun onResponse(call: Call<padlist>, response: Response<padlist>) {
@@ -101,6 +103,35 @@ class DetailListFragment(position:Int) : Fragment() {
             }
         })
 
+        reviews.enqueue(object : Callback<List<reviewInfo>> {
+            override fun onResponse(
+                    call: Call<List<reviewInfo>>,
+                    response: Response<List<reviewInfo>>
+            ) {
+                if (response.isSuccessful) {
+                    var reviewList=response.body()!!
+                    scoreList=ArrayList()
+                    var score:Float?=null
+                    var sum=0.0
+
+                    for(r in reviewList){
+                        if(r.pad==idpo){
+                            score=(r.star1!!+r.star2!!+r.star3!!+r.star4!!)/4
+                            scoreList!!.add(score)
+                            sum=sum+score
+                        }
+                    }
+                    //Log.d("scores",scoreList.toString())
+                    review_score.text=sum.div(scoreList.size).toString()
+                    score_star.rating=sum.div(scoreList.size).toFloat()
+                    //Log.d("scores",sum.div(scoreList.size).toString())
+                }
+            }
+
+            override fun onFailure(call: Call<List<reviewInfo>>, t: Throwable) {
+                Log.d("get_review", "실패:${t.message}}")
+            }
+        })
 
         adapter.items.add(List_IngreItem("핵산",8,8,8))
         adapter.items.add(List_IngreItem("그로포",8,8,8))
@@ -128,7 +159,7 @@ class DetailListFragment(position:Int) : Fragment() {
         gotoreview.setOnClickListener {
             val fragmentManager2 = requireActivity().supportFragmentManager
             var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment()
+            val fragmentA = ReviewFragment(idpo)
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
 
