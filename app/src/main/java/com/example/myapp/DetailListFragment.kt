@@ -21,11 +21,16 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.URL
+import java.net.URLDecoder
 
 class DetailListFragment(position:Int) : Fragment() {
     private lateinit var adapter:ListdetailAdapter
     var idpo:Int=position
-
+    var names= mutableListOf<String>()
+    var averages= mutableListOf<Double>()
+    var maxs= mutableListOf<Double>()
+    var mins= mutableListOf<Double>()
+    var detections= mutableListOf<Double>()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         var root =inflater.inflate(R.layout.fragment_detail_list, container, false)
@@ -91,10 +96,28 @@ class DetailListFragment(position:Int) : Fragment() {
                     }
                     var bitmap: Bitmap = image_task.execute().get()
                     detailimg.setImageBitmap(bitmap)*/
+                    Log.e("Re",mList.image!!)
+                    Log.e("Re",mList.image!!.substring(ApiService.API_URL.length+1))
+                    var a= URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length+1), "utf-8");
+                    Log.e("Result",a)
+                    Glide.with(view).load(a).into(detailimg)
+                    Log.d("imgUrl",mList.image!!.substring(ApiService.API_URL.length+1))
                     drank.setText(mList.rank.toString())
                     dscore.setText(mList.safeScore.toString())
                     detailma.setText(mList.manufacturer.toString());
                     Log.e("D_tests",mList.name.toString())
+
+
+                    var inlist=mList.ingredients
+
+                    for(i in inlist.indices){
+                        names.add(inlist.get(i).name!!)
+                        maxs.add(inlist.get(i).max!!)
+                        mins.add(inlist.get(i).min!!)
+                        averages.add(inlist.get(i).average!!)
+
+                        //list3.add(inlist.get(i).average!!)
+                    }
                 }
             }
 
@@ -102,50 +125,78 @@ class DetailListFragment(position:Int) : Fragment() {
                 Log.e("D_tests", "OnFailuer+${t.message}")
             }
         })
+        var retrofit1 = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
+                GsonConverterFactory.create()).build()
+        var apiService1 = retrofit1.create(ApiService::class.java)
+        var tests1 = apiService1.get_detection("json")
+        tests1.enqueue(object : Callback<ArrayList<detectioninfo>> {
+            override fun onResponse(call: Call<ArrayList<detectioninfo>>, response: Response<ArrayList<detectioninfo>>) {
+                if (response.isSuccessful) {
+                    var mList = response.body()!!
+                    //Log.e("detection", mList.get(0).pad.toString())
+
+                    for (i in mList.indices) {
+                        if ((mList.get(i).pad)!!.equals(idpo)) {
+
+                            detections.add(mList.get(i).detection!!)
+
+                        }
+
+                    }
+                    Log.e("success", detections.toString())
+                    detections.reverse()   }}
+                    override fun onFailure(call: Call<ArrayList<detectioninfo>>, t: Throwable) {
+                        Log.e("D_tests", "OnFailuer+${t.message}")
+                    }
+                })
 
 
-        adapter.items.add(List_IngreItem("핵산",8,8,8))
-        adapter.items.add(List_IngreItem("그로포",8,8,8))
-        adapter.notifyDataSetChanged()
 
 
 
-        gotodi.setOnClickListener {
-            val fragmentManager3 = requireActivity().supportFragmentManager
-            var transaction3: FragmentTransaction
-            val fragmentA = Detail_IngreFragment()
-            transaction3 = fragmentManager3.beginTransaction()
-            val bundle = Bundle()
-            bundle.putInt("idpo", idpo)
-            fragmentA.arguments=bundle
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.add(R.id.container,Detail_IngreFragment())
-            transaction.replace(R.id.container, Detail_IngreFragment().apply { arguments = bundle })
-            transaction.commit()
+
+                    adapter.items.add(List_IngreItem("핵산", 8, 8, 8))
+                    adapter.items.add(List_IngreItem("그로포", 8, 8, 8))
+                    adapter.notifyDataSetChanged()
 
 
-        }
+
+                    gotodi.setOnClickListener {
+                        val fragmentManager3 = requireActivity().supportFragmentManager
+                        var transaction3: FragmentTransaction
+                        val fragmentA = Detail_IngreFragment()
+                        transaction3 = fragmentManager3.beginTransaction()
+                        val bundle = Bundle()
+                        bundle.putInt("idpo", idpo)
+                        fragmentA.arguments = bundle
+                        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                        transaction.add(R.id.container, Detail_IngreFragment())
+                        transaction.replace(R.id.container, Detail_IngreFragment().apply { arguments = bundle })
+                        transaction.commit()
 
 
-        gotoreview.setOnClickListener {
-            val fragmentManager2 = requireActivity().supportFragmentManager
-            var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment()
-            transaction2 = fragmentManager2.beginTransaction()
-            val bundle = Bundle()
-
-            bundle.putString("name1", "h")
-            fragmentA.arguments=bundle
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.add(R.id.container,fragmentA)
-            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
-            transaction.commit()
+                    }
 
 
-        }
+                    gotoreview.setOnClickListener {
+                        val fragmentManager2 = requireActivity().supportFragmentManager
+                        var transaction2: FragmentTransaction
+                        val fragmentA = ReviewFragment()
+                        transaction2 = fragmentManager2.beginTransaction()
+                        val bundle = Bundle()
+
+                        bundle.putString("name1", "h")
+                        fragmentA.arguments = bundle
+                        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                        transaction.add(R.id.container, fragmentA)
+                        transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
+                        transaction.commit()
 
 
-    }
+                    }
+
+
+                }
 
 
 
