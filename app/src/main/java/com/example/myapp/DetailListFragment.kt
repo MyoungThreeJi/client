@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 
 import kotlinx.android.synthetic.main.fragment_detail_list.*
 import kotlinx.android.synthetic.main.fragment_main_list.*
-import kotlinx.android.synthetic.main.padinfo.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,18 +22,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.URL
 
-class DetailListFragment(position: Int) : Fragment() {
-    private lateinit var adapter: ListdetailAdapter
-    var idpo: Int = position
+class DetailListFragment(position:Int) : Fragment() {
+    private lateinit var adapter:ListdetailAdapter
+    var idpo:Int=position
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        var root = inflater.inflate(R.layout.fragment_detail_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        var root =inflater.inflate(R.layout.fragment_detail_list, container, false)
 
 
-        Log.d("id", "id=${idpo}")
+        Log.d("id","id=${idpo}")
 
 
         return root
@@ -42,10 +39,27 @@ class DetailListFragment(position: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        class URLtoBitmapTask() : AsyncTask<Void, Void, Bitmap>() {
+            //액티비티에서 설정해줌
+            lateinit var url:URL
+            override fun doInBackground(vararg params: Void?): Bitmap {
+                val bitmap = BitmapFactory.decodeStream(url.openStream())
+                return bitmap
+            }
+            override fun onPreExecute() {
+                super.onPreExecute()
+
+            }
+            override fun onPostExecute(result: Bitmap) {
+                super.onPostExecute(result)
+            }
+        }
+
+
         val bundle = arguments
         val po = bundle?.getInt("position")
 
-        Log.e("bundel", po.toString())
+ Log.e("bundel",po.toString())
 
         val layoutManager = LinearLayoutManager(context)
         layoutManager.setReverseLayout(true)
@@ -56,20 +70,29 @@ class DetailListFragment(position: Int) : Fragment() {
         recy.adapter = adapter
 
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
-            GsonConverterFactory.create()).build()
+                GsonConverterFactory.create()).build()
         var apiService = retrofit.create(ApiService::class.java)
 
-        var tests = apiService.get_id(idpo)
+        var tests=apiService.get_id(idpo)
 
         tests.enqueue(object : Callback<padlist> {
             override fun onResponse(call: Call<padlist>, response: Response<padlist>) {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
-
                     detailname.setText(mList.name.toString());
+                    //detailimg.setImageDrawable(mList.image)
+                   /* var i= mList.image
+                    var n= i!!.indexOf("i")
+                    var re=i.toString().substring((n+3)!!)
+                    Log.e("Re",re)
+                    var image_task: URLtoBitmapTask = URLtoBitmapTask()
+                    image_task = URLtoBitmapTask().apply {
+                        url = URL(re)
+                    }
+                    var bitmap: Bitmap = image_task.execute().get()
+                    detailimg.setImageBitmap(bitmap)*/
                     detailma.setText(mList.manufacturer.toString());
-
-                    Log.e("D_tests", mList.name.toString())
+                    Log.e("D_tests",mList.name.toString())
                 }
             }
 
@@ -78,8 +101,9 @@ class DetailListFragment(position: Int) : Fragment() {
             }
         })
 
-        adapter.items.add(List_IngreItem("핵산", 8, 8, 8))
-        adapter.items.add(List_IngreItem("그로포", 8, 8, 8))
+
+        adapter.items.add(List_IngreItem("핵산",8,8,8))
+        adapter.items.add(List_IngreItem("그로포",8,8,8))
         adapter.notifyDataSetChanged()
 
 
@@ -91,9 +115,9 @@ class DetailListFragment(position: Int) : Fragment() {
             transaction3 = fragmentManager3.beginTransaction()
             val bundle = Bundle()
             bundle.putInt("idpo", idpo)
-            fragmentA.arguments = bundle
+            fragmentA.arguments=bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.add(R.id.container, Detail_IngreFragment())
+            transaction.add(R.id.container,Detail_IngreFragment())
             transaction.replace(R.id.container, Detail_IngreFragment().apply { arguments = bundle })
             transaction.commit()
 
@@ -104,14 +128,14 @@ class DetailListFragment(position: Int) : Fragment() {
         gotoreview.setOnClickListener {
             val fragmentManager2 = requireActivity().supportFragmentManager
             var transaction2: FragmentTransaction
-            val fragmentA = ReviewFragment(idpo)
+            val fragmentA = ReviewFragment()
             transaction2 = fragmentManager2.beginTransaction()
             val bundle = Bundle()
 
             bundle.putString("name1", "h")
-            fragmentA.arguments = bundle
+            fragmentA.arguments=bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.add(R.id.container, fragmentA)
+            transaction.add(R.id.container,fragmentA)
             transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
             transaction.commit()
 
@@ -120,6 +144,7 @@ class DetailListFragment(position: Int) : Fragment() {
 
 
     }
+
 
 
 }

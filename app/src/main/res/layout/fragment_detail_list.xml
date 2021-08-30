@@ -144,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3위"
+                    android:id="@+id/drank"
                     android:layout_marginLeft="10dp"
                     android:textColor="#F9B7CC"
                     android:textSize="17dp"/>
@@ -165,6 +166,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/dscore"
                     android:layout_marginLeft="10dp"
                     android:text="8.9"
                     android:textColor="#F9B7CC"

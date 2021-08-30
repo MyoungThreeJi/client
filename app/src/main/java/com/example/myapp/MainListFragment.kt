@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.myapp.R
+import kotlinx.android.synthetic.main.fragment_detail_list.*
 
 
 import kotlinx.android.synthetic.main.fragment_main_list.*
@@ -19,10 +21,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URLDecoder
 
 
 class MainListFragment : Fragment() {
-
+    var images = mutableListOf<String>()
     var ints = mutableListOf<Int>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +34,8 @@ class MainListFragment : Fragment() {
         // Inflate the layout for this fragment
         var root=inflater.inflate(R.layout.fragment_main_list, container, false)
         val layoutManager = LinearLayoutManager(activity)
-        layoutManager.setReverseLayout(true)
-        layoutManager.setStackFromEnd(true)
+        //layoutManager.setReverseLayout(true)
+        //layoutManager.setStackFromEnd(true)
         root.recyclerView1.layoutManager = layoutManager
         lateinit var adapter: padInfoAdapter
 
@@ -55,9 +58,11 @@ class MainListFragment : Fragment() {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
                     for(i in mList.indices){
-                        ints.add(mList.get(i).id!!)}
+                        ints.add(mList.get(i).id!!)
+                        images.add(mList.get(i).image!!)
+                    }
 
-Log.e("rank",mList.get(0).rank!!.toString())
+                    Log.e("rank",mList.get(0).rank!!.toString())
 
                     //recyclerView1.adapter = padInfoAdapter(mList)
                     adapter = padInfoAdapter(mList)

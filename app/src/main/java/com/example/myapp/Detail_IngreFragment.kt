@@ -66,9 +66,6 @@ class Detail_IngreFragment : Fragment() {
                     var mList = response.body()!!
                     //Log.e("id",mList.name.toString())
                     var inlist=mList.ingredients
-                    Log.e("id",inlist.get(0).id.toString())
-                    Log.e("id",inlist.toString())
-
 
                     for(i in inlist.indices){
                         ints.add(inlist.get(i).id!!)
