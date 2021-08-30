@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCF7EF"
+
+  >
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textColor="#E91E63"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&lt; "
+          />
+        <TextView
+            android:textColor="#E91E63"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="부작용"
+          />
+
+        <TextView
+            android:textColor="#E91E63"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" &gt;"
+            />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:id="@+id/effectds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+
+</LinearLayout>

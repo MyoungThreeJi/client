@@ -1,17 +1,14 @@
 package com.example.myapp
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.fragment_detail_list.*
+import kotlinx.android.synthetic.main.menu_parent.view.*
 
 import kotlinx.android.synthetic.main.padinfo.view.*
-import java.net.URLDecoder
 
-class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
+class IngreAdapter(var items:MutableList<parent>):RecyclerView.Adapter<IngreAdapter.ViewHolder>(){
 
 
     interface ItemClickListener {
@@ -25,12 +22,12 @@ class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapte
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListner = itemClickListener
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):padInfoAdapter.ViewHolder {
-        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.padinfo,parent,false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):IngreAdapter.ViewHolder {
+        val itemView=LayoutInflater.from(parent.context).inflate(R.layout.menu_parent,parent,false)
         return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: padInfoAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: IngreAdapter.ViewHolder, position: Int) {
         val item=items[position]
         holder.setItem(item)
 
@@ -49,15 +46,16 @@ class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapte
 
 
 
-        fun setItem(item:padlist){
-            itemView.lbrand.text = item.manufacturer
-            itemView.lproduct.text = item.name
-            itemView.score.text=item.safeScore.toString()
+        fun setItem(item:parent){
+            itemView.tv_list_title.text = item.name
+            itemView.average.text = item.average.toString()
+            itemView.detection.text = item.detection.toString()
             //itemView.score.text = item.score.toString()
-
-            var a= URLDecoder.decode(item.image!!.substring(ApiService.API_URL.length+1), "utf-8");
-            Glide.with(itemView).load(a).into(itemView.limg)
-
+            if(item.image.toString().equals("고")){
+            itemView.dimage.setImageResource(R.drawable.high)}
+                        else{
+                itemView.dimage.setImageResource(R.drawable.low)
+                        }
 
 
         }

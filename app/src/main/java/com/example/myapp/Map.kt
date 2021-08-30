@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
@@ -24,13 +26,12 @@ class Map : Fragment(),OnMapReadyCallback{
 
     private lateinit var map:GoogleMap
     private lateinit var locationClient: FusedLocationProviderClient
-    private lateinit var addressMaker:Geocoder
+    private lateinit var btn:ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("fragment","ddddd")
 
-        addressMaker= Geocoder(this.activity)
 
         AndPermission.with(this).runtime().permission(Permission.Group.LOCATION)
             .onGranted { permissions ->
@@ -50,6 +51,8 @@ class Map : Fragment(),OnMapReadyCallback{
     ): View? {
         Log.d("fragment","onCreateView실행")
         val view:View= inflater.inflate(R.layout.fragment_map,container,false)
+
+        //btn=view.findViewById<ImageButton>(R.id.my_trace)
 
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.sanitarypad_map) as SupportMapFragment
@@ -77,6 +80,15 @@ class Map : Fragment(),OnMapReadyCallback{
 
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat,lng),15f))
                 }
+        }
+        catch(e:SecurityException){
+            e.printStackTrace()
+        }
+
+        try{
+            btn.setOnClickListener {
+                requestLocation()
+            }
         }
         catch(e:SecurityException){
             e.printStackTrace()
@@ -125,23 +137,4 @@ class Map : Fragment(),OnMapReadyCallback{
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Map.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                Map().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
-    }
 }

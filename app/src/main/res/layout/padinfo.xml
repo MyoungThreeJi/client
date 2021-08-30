@@ -11,9 +11,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/img_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/limg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:src="@drawable/register_img"
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="15dp"
@@ -25,14 +25,14 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="20dp">
                 <TextView
-                    android:id="@+id/brand"
+                    android:id="@+id/lbrand"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="브랜드명"
                     android:textSize="15sp"
                     android:layout_marginTop="10dp"/>
                 <TextView
-                    android:id="@+id/product"
+                    android:id="@+id/lproduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="상품명"
