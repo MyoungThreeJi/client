@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_detail__ingre.*
 import kotlinx.android.synthetic.main.fragment_detail_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,6 +45,7 @@ class DetailListFragment(position: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         class URLtoBitmapTask() : AsyncTask<Void, Void, Bitmap>() {
             //액티비티에서 설정해줌
             lateinit var url: URL
@@ -63,6 +65,7 @@ class DetailListFragment(position: Int) : Fragment() {
         }
 
 
+
         val bundle = arguments
         val po = bundle?.getInt("position")
 
@@ -73,8 +76,6 @@ class DetailListFragment(position: Int) : Fragment() {
         layoutManager.setStackFromEnd(true)
         recy.layoutManager = layoutManager
 
-        adapter = ListdetailAdapter()
-        recy.adapter = adapter
 
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
                 GsonConverterFactory.create()).build()
@@ -88,6 +89,7 @@ class DetailListFragment(position: Int) : Fragment() {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
                     detailname.setText(mList.name.toString());
+
                     //detailimg.setImageDrawable(mList.image)
                     /* var i= mList.image
                      var n= i!!.indexOf("i")
@@ -104,6 +106,13 @@ class DetailListFragment(position: Int) : Fragment() {
                     Log.e("Re", mList.image!!.substring(ApiService.API_URL.length + 1))
                     var a = URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length + 1), "utf-8");
                     Log.e("Result", a)
+
+
+                    Log.e("Re",mList.image!!)
+                    Log.e("Re",mList.image!!.substring(ApiService.API_URL.length+1))
+                    var a= URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length+1), "utf-8");
+                    Log.e("Result",a)
+
                     Glide.with(view).load(a).into(detailimg)
                     Log.d("imgUrl", mList.image!!.substring(ApiService.API_URL.length + 1))
                     drank.setText(mList.rank.toString())
@@ -120,6 +129,7 @@ class DetailListFragment(position: Int) : Fragment() {
                         mins.add(inlist.get(i).min!!)
                         averages.add(inlist.get(i).average!!)
                     }
+
                 }
             }
 
@@ -140,16 +150,34 @@ class DetailListFragment(position: Int) : Fragment() {
 
                             detections.add(mList.get(i).detection!!)
                         }
+
                         Log.e("success", detections.toString())
                         detections.reverse()
                     }
                 }
             }
 
+
+                    }
+                    Log.e("success", detections.toString())
+                    detections.reverse()
+
+                    var d= mutableListOf<List_IngreItem>()
+                    for(i in names.indices){
+                        var reallist = List_IngreItem(names.get(i),mins.get(i), maxs.get(i), averages.get(i),detections.get(i))
+                        d.add(reallist)
+                    }
+
+
+                    adapter = ListdetailAdapter(d)
+                    recy.adapter = adapter
+
+
             override fun onFailure(call: Call<ArrayList<detectioninfo>>, t: Throwable) {
                 Log.e("D_tests", "OnFailuer+${t.message}")
             }
         })
+
 
         reviews.enqueue(object : Callback<List<reviewInfo>> {
             override fun onResponse(
@@ -180,6 +208,14 @@ class DetailListFragment(position: Int) : Fragment() {
                 Log.d("get_review", "실패:${t.message}}")
             }
         })
+
+                }}
+                    override fun onFailure(call: Call<ArrayList<detectioninfo>>, t: Throwable) {
+                        Log.e("D_tests", "OnFailuer+${t.message}")
+                    }
+                })
+
+
 
         adapter.items.add(List_IngreItem("핵산", 8, 8, 8))
         adapter.items.add(List_IngreItem("그로포", 8, 8, 8))
