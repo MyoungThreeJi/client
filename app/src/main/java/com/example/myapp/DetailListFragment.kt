@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_detail__ingre.*
 import kotlinx.android.synthetic.main.fragment_detail_list.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -69,11 +70,12 @@ class DetailListFragment(position: Int) : Fragment() {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
                     detailname.setText(mList.name.toString());
+                 
+                    Log.e("Re",mList.image!!)
+                    Log.e("Re",mList.image!!.substring(ApiService.API_URL.length+1))
+                    var a= URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length+1), "utf-8");
+                    Log.e("Result",a)
 
-                    Log.e("Re", mList.image!!)
-                    Log.e("Re", mList.image!!.substring(ApiService.API_URL.length + 1))
-                    var a = URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length + 1), "utf-8");
-                    Log.e("Result", a)
                     Glide.with(view).load(a).into(detailimg)
                     Log.d("imgUrl", mList.image!!.substring(ApiService.API_URL.length + 1))
                     drank.setText(mList.rank.toString())
@@ -90,6 +92,7 @@ class DetailListFragment(position: Int) : Fragment() {
                         mins.add(inlist.get(i).min!!)
                         averages.add(inlist.get(i).average!!)
                     }
+
                 }
             }
 
@@ -126,11 +129,11 @@ class DetailListFragment(position: Int) : Fragment() {
                 }
             }
 
-
             override fun onFailure(call: Call<ArrayList<detectioninfo>>, t: Throwable) {
                 Log.e("D_tests", "OnFailuer+${t.message}")
             }
         })
+
 
         reviews.enqueue(object : Callback<List<reviewInfo>> {
             override fun onResponse(
@@ -161,10 +164,6 @@ class DetailListFragment(position: Int) : Fragment() {
                 Log.d("get_review", "실패:${t.message}}")
             }
         })
-
-//        adapter.items.add(List_IngreItem("핵산", 8, 8, 8))
-//        adapter.items.add(List_IngreItem("그로포", 8, 8, 8))
-//        adapter.notifyDataSetChanged()
 
 
         gotodi.setOnClickListener {
