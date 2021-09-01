@@ -26,9 +26,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ReviewFragment() : Fragment(){
+class ReviewFragment (id:Int): Fragment(){
     private lateinit var adapter: reviewInfoAdapter
-    //var get_id:Int=id
+    var get_id:Int=id
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -57,11 +57,17 @@ class ReviewFragment() : Fragment(){
                     response: Response<List<reviewInfo>>
             ) {
                 if (response.isSuccessful) {
-                    Log.d("get_review", "성공-${response.body().toString()}")
-
                     var reviewList=response.body()!!
+                    var reviews=ArrayList<reviewInfo>()
+                    var score:Float?=null
 
-                    adapter = reviewInfoAdapter(reviewList)
+                    for(r in reviewList){
+                        if(r.pad==get_id){
+                            reviews.add(r)
+                        }
+                    }
+
+                    adapter = reviewInfoAdapter(reviews)
                     num_review.text=adapter.itemCount.toString()
                     reviewre.adapter = adapter
                 }
@@ -74,7 +80,7 @@ class ReviewFragment() : Fragment(){
 
         reg_review.setOnClickListener {
             val bundle=Bundle()
-            var dialog:ReviewDialogFragment=ReviewDialogFragment().getInstance()
+            var dialog:ReviewDialogFragment=ReviewDialogFragment(get_id).getInstance()
             dialog.arguments=bundle
             activity?.supportFragmentManager?.let{fragmentManager->
                 dialog.show(
