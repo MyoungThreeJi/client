@@ -6,6 +6,7 @@ import retrofit2.http.*
 interface ApiService {
     companion object{
         public val API_URL = "http://84d7-182-215-164-209.ngrok.io"
+
     }
     @GET("v1/pad")
     fun get_pad(@Query("format") json:String): Call<List<padInfo>>
