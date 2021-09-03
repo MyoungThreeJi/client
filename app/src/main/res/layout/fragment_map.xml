@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Map">
 
     <!-- TODO: Update blank fragment layout -->
@@ -17,9 +18,36 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="400dp"
         android:id="@+id/sanitarypad_map"
         tools:context=".Map"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
+<LinearLayout
+    android:id="@+id/ginfo"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/pink"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="강동청소년센터_시립"
+        android:textSize="18dp"
+        android:textColor="@color/black"
+        android:id="@+id/gname"/>
+    <TextView
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="강동청소년센터_시립"
+        android:id="@+id/glocation"/>
 
-</FrameLayout>
+
+
+</LinearLayout>
+
+
+</LinearLayout>

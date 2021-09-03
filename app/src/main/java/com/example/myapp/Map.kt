@@ -13,9 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import com.google.android.gms.location.*
 import com.google.android.gms.location.places.GeoDataClient
 import com.google.android.gms.location.places.PlaceDetectionClient
@@ -24,13 +26,17 @@ import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.runtime.Permission
+import kotlinx.android.synthetic.main.fragment_map.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+import noman.googleplaces.Place;
+import noman.googleplaces.PlaceType
+import noman.googleplaces.PlacesException;
+import noman.googleplaces.PlacesListener;
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -127,6 +133,7 @@ class Map : Fragment(), OnMapReadyCallback {
         placeDetectionClient = Places.getPlaceDetectionClient(requireActivity())
 
         map.mapType = GoogleMap.MAP_TYPE_NORMAL
+
         map.uiSettings.isZoomControlsEnabled = true
 
         map.isMyLocationEnabled = true
@@ -175,9 +182,30 @@ class Map : Fragment(), OnMapReadyCallback {
                                 )
                             )
                                 .title(l.name)
+                                    .snippet(l.address+"\n"+l.Phone)
+
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                         )
                     }
+
+                  map.setOnMarkerClickListener(object : GoogleMap.OnMarkerClickListener {
+                        override fun onMarkerClick(marker: Marker): Boolean {
+                           ginfo.isVisible=true
+
+                            var lt = marker.position.latitude
+                            var lg = marker.position.longitude
+                            var place = LatLng(lt, lg)
+                            gname.text=marker.title
+                            glocation.text=marker.snippet
+
+                            map.moveCamera(CameraUpdateFactory.newLatLng(place))
+                            return false
+                        }
+                    })
+
+
+
+
                 }
             }
 
@@ -185,6 +213,10 @@ class Map : Fragment(), OnMapReadyCallback {
                 Log.d("emergency map get", t.message.toString())
             }
         })
+
+
+
+
         Log.d("fragment", "오류7")
     }
 
