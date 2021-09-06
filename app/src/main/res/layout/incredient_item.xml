@@ -1,59 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schenmas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
- >
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/iname"
-        android:text="핵산"
-        android:textSize="15dp"
-         />
+        <TextView
+            android:id="@+id/iname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="핵산"
+            android:textSize="15dp" />
 
-
-    <SeekBar
-        android:id="@+id/sb_storemainoptiondistance_distance"
-        android:thumb="@drawable/seek_tumb"
-        android:progressDrawable="@drawable/seekbar"
-        android:max="4"
-        android:progress="2"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/sb_storemainoptiondistance_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contextClickable="false"
+            android:max="100"
+            android:progress="30"
+            android:progressDrawable="@drawable/seekbar"
+            android:thumb="@drawable/seek_tumb" />
     </LinearLayout>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_marginLeft="50dp"
-       android:id="@+id/start"/>
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_marginLeft="110dp"
-        android:id="@+id/middle"/>
+        <TextView
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:text="0" />
 
+        <TextView
+            android:id="@+id/detect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="detect"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        android:layout_marginLeft="110dp"
-        android:id="@+id/end"/>
+        <TextView
+            android:id="@+id/middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:text="0" />
 
+        <TextView
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350dp"
+            android:text="0" />
 
-</LinearLayout></LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

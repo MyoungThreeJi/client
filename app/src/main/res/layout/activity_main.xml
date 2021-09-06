@@ -24,7 +24,6 @@
 
         app:menu="@menu/tabs"
         app:labelVisibilityMode="labeled"
-        android:layout_alignParentBottom="true"
-        />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
