@@ -11,9 +11,8 @@ import kotlinx.android.synthetic.main.fragment_detail_list.*
 import kotlinx.android.synthetic.main.padinfo.view.*
 import java.net.URLDecoder
 
-class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
-
-
+class padInfoAdapter(var item:ArrayList<padlist>):RecyclerView.Adapter<padInfoAdapter.ViewHolder>(){
+var items=item
     interface ItemClickListener {
         fun onClick(view: View, position: Int)
     }
@@ -37,11 +36,11 @@ class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapte
         holder.itemView.setOnClickListener {
             itemClickListner.onClick(it, position)
             //MainListFragment.todetail1(position)
-
+            //items.removeAt(position)
 
         }
     }
-
+    fun clearItem() = items.clear()
     override fun getItemCount()=items.size
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
@@ -54,9 +53,9 @@ class padInfoAdapter(var items:List<padlist>):RecyclerView.Adapter<padInfoAdapte
             itemView.lproduct.text = item.name
             itemView.score.text=item.safeScore.toString()
             //itemView.score.text = item.score.toString()
-
-            var a= URLDecoder.decode(item.image!!.substring(ApiService.API_URL.length+1), "utf-8");
-            Glide.with(itemView).load(a).into(itemView.limg)
+itemView.lrank.text=item.rank.toString()+"위"
+           // var a= URLDecoder.decode(item.image!!.substring(ApiService.API_URL.length+1), "utf-8");
+            Glide.with(itemView).load(item.image!!).into(itemView.limg)
 
 
 

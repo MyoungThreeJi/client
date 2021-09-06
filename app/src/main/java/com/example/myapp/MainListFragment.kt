@@ -7,15 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.myapp.R
+import kotlinx.android.synthetic.main.effectdialog.view.*
+import kotlinx.android.synthetic.main.effectdialog.view.effectds
 import kotlinx.android.synthetic.main.fragment_detail_list.*
 
 
 import kotlinx.android.synthetic.main.fragment_main_list.*
 import kotlinx.android.synthetic.main.fragment_main_list.view.*
+import kotlinx.android.synthetic.main.searchdialog.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,8 +57,8 @@ class MainListFragment : Fragment() {
         var apiService = retrofit.create(ApiService::class.java)
         var tests = apiService.get_padid("json")
 
-        tests.enqueue(object : Callback<List<padlist>> {
-            override fun onResponse(call: Call<List<padlist>>, response: Response<List<padlist>>) {
+        tests.enqueue(object : Callback<ArrayList<padlist>> {
+            override fun onResponse(call: Call<ArrayList<padlist>>, response: Response<ArrayList<padlist>>) {
                 if (response.isSuccessful) {
                     var mList = response.body()!!
                     for(i in mList.indices){
@@ -62,7 +66,8 @@ class MainListFragment : Fragment() {
                         images.add(mList.get(i).image!!)
                     }
 
-                    Log.e("rank",mList.get(0).rank!!.toString())
+                    //Log.e("rank",mList.get(0).image!!.toString())
+                   // Log.e("rank",mList.get(0).image!!.substring(ApiService.API_URL.length+2).toString())
 
                     //recyclerView1.adapter = padInfoAdapter(mList)
                     adapter = padInfoAdapter(mList)
@@ -81,7 +86,7 @@ class MainListFragment : Fragment() {
                             //transaction.add(R.id.container,DetailListFragment())
                             transaction.add(R.id.container,fragmentA)
                             //transaction.replace(R.id.container, DetailListFragment().apply { arguments = bundle })
-                            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
+                            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle }).addToBackStack(null)
                             transaction.commit()
 
 
@@ -93,7 +98,53 @@ class MainListFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<padlist>>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<padlist>>, t: Throwable) {
+                Log.e("D_tests", "OnFailuer+${t.message}")
+            }
+        }
+
+        )
+
+        root.rankinfos.setOnClickListener{
+
+            var dlg = AlertDialog.Builder(requireContext())
+            var dialogView = View.inflate(context, R.layout.rankinfodialog, null)
+            dlg.setView(dialogView)
+            dlg.setPositiveButton("확인") { dialog, which ->}
+            dlg.show()
+        }
+
+root.searchlist.setOnClickListener{
+    root.recyclerView1.adapter= adapter
+    adapter.clearItem()
+  var dlg = AlertDialog.Builder(requireContext())
+    var dialogView = View.inflate(context, R.layout.searchdialog, null)
+    dlg.setView(dialogView)
+    var what=dialogView.dtext.getText()
+
+    dlg.setPositiveButton("검색") { dialog, which ->
+
+
+    var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
+                GsonConverterFactory.create()).build()
+        var apiService = retrofit.create(ApiService::class.java)
+        var tests = apiService.search_pad(what.toString())
+
+        tests.enqueue(object : Callback<ArrayList<padlist>> {
+            override fun onResponse(call: Call<ArrayList<padlist>>, response: Response<ArrayList<padlist>>) {
+                if (response.isSuccessful) {
+                    var mList = response.body()!!
+
+
+                    adapter = padInfoAdapter(mList)
+
+                    root.recyclerView1.adapter= adapter
+
+
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<padlist>>, t: Throwable) {
                 Log.e("D_tests", "OnFailuer+${t.message}")
             }
         }
@@ -101,8 +152,14 @@ class MainListFragment : Fragment() {
         )
 
 
+    }
 
 
+
+    dlg.show()
+
+
+}
 
         return root
     }

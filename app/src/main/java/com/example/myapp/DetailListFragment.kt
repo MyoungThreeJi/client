@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_detail__ingre.*
 import kotlinx.android.synthetic.main.fragment_detail_list.*
+import kotlinx.android.synthetic.main.padinfo.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -74,10 +75,10 @@ class DetailListFragment(position: Int) : Fragment() {
                  
                     Log.e("Re",mList.image!!)
                     Log.e("Re",mList.image!!.substring(ApiService.API_URL.length+1))
-                    var a= URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length+1), "utf-8");
-                    Log.e("Result",a)
-
-                    Glide.with(view).load(a).into(detailimg)
+                   // var a= URLDecoder.decode(mList.image!!.substring(ApiService.API_URL.length+1), "utf-8");
+                    ///Log.e("Result",a)
+                    Glide.with(view).load(mList.image!!).into(detailimg)
+                    //Glide.with(view).load(a).into(detailimg)
                     Log.d("imgUrl", mList.image!!.substring(ApiService.API_URL.length + 1))
                     drank.setText(mList.rank.toString())
                     dscore.setText(mList.safeScore.toString())
@@ -180,7 +181,7 @@ class DetailListFragment(position: Int) : Fragment() {
             fragmentA.arguments = bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.add(R.id.container, Detail_IngreFragment())
-            transaction.replace(R.id.container, Detail_IngreFragment().apply { arguments = bundle })
+            transaction.replace(R.id.container, Detail_IngreFragment().apply { arguments = bundle }).addToBackStack(null)
             transaction.commit()
 
 
@@ -198,7 +199,7 @@ class DetailListFragment(position: Int) : Fragment() {
             fragmentA.arguments = bundle
             val transaction = requireActivity().supportFragmentManager.beginTransaction()
             transaction.add(R.id.container, fragmentA)
-            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle })
+            transaction.replace(R.id.container, fragmentA.apply { arguments = bundle }).addToBackStack(null)
             transaction.commit()
 
 
