@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Detail_IngreFragment">
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
@@ -16,12 +16,12 @@
             android:layout_height="wrap_content"
             android:text="성분"
             android:layout_gravity="center_vertical"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textColor="@color/black"/>
     </LinearLayout>
     <TextView
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,11 +34,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-            android:textColor="#F1B4C9"
+            android:textColor="#FF7A85"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="유해물질 총 검출량"
-            android:textSize="10dp"/>
+            android:textSize="13dp"/>
 
 
         <TextView
@@ -48,28 +48,29 @@
             android:id="@+id/sumin"
             android:text="4.23"
             android:textColor="@color/black"
-            android:textSize="10dp"/>
+            android:textSize="13dp"/>
 
         <TextView
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="㎍/PAD"
-            android:textSize="10dp"/>
+            android:textSize="11dp"/>
 
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:layout_marginTop="5dp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="위험정도"
-            android:textSize="10dp"/>
+            android:textSize="13dp"/>
 
         <ImageView
             android:layout_marginLeft="10dp"
@@ -80,9 +81,12 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:text="위험도 낮음"
             android:textSize="10dp"/>
         <ImageView
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/high"/>
@@ -90,12 +94,15 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:text="위험도 높음"
             android:textSize="10dp"/>
     </LinearLayout>
 
     <TextView
         android:textColor="@color/black"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,16 +113,17 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="#E3E0E0"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:background="#FFEB3B"
+        android:background="#FFD2D7"
         android:orientation="horizontal">
         <TextView
             android:textColor="@color/black"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,6 +133,7 @@
 
         <TextView
             android:textColor="@color/black"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,6 +142,7 @@
 
         <TextView
             android:textColor="@color/black"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="200dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,6 +150,7 @@
             android:textSize="10dp"/>
         <TextView
             android:textColor="@color/black"
+            android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
