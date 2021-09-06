@@ -36,6 +36,7 @@ class ListdetailAdapter(var items:MutableList<List_IngreItem>) : RecyclerView.Ad
 
             var a=item.detection!!*100
             var b=item.high*100
+            itemView.sb_storemainoptiondistance_distance.max=b.toInt()
             itemView.sb_storemainoptiondistance_distance.setProgress(a.toInt(),false)
         }
     }
