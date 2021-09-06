@@ -16,14 +16,15 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.location.*
-import com.google.android.gms.location.places.GeoDataClient
-import com.google.android.gms.location.places.PlaceDetectionClient
-import com.google.android.gms.location.places.Places
+import com.google.android.gms.location.places.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
+import com.google.android.gms.tasks.OnSuccessListener
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.runtime.Permission
+import kotlinx.android.synthetic.main.fragment_map.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,21 +56,21 @@ class Map : Fragment(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         Log.d("fragment", "ddddd")
 
-        if(!permissionGranted) {
+        if (!permissionGranted) {
             AndPermission.with(this).runtime().permission(Permission.Group.LOCATION)
-                .onGranted { permissions ->
-                    Log.d("permissions", "허용된 권한: ${permissions.size}")
-                }
-                .onDenied { permissions ->
-                    Log.d("permissions", "거부된 권한: ${permissions.size}")
-                }.start()
+                    .onGranted { permissions ->
+                        Log.d("permissions", "허용된 권한: ${permissions.size}")
+                    }
+                    .onDenied { permissions ->
+                        Log.d("permissions", "거부된 권한: ${permissions.size}")
+                    }.start()
         }
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<out String>,
+            grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -82,9 +83,9 @@ class Map : Fragment(), OnMapReadyCallback {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         Log.d("fragment", "onCreateView실행")
         val view: View = inflater.inflate(R.layout.fragment_map, container, false)
@@ -93,7 +94,7 @@ class Map : Fragment(), OnMapReadyCallback {
 
 
         val mapFragment =
-            childFragmentManager.findFragmentById(R.id.sanitarypad_map) as SupportMapFragment
+                childFragmentManager.findFragmentById(R.id.sanitarypad_map) as SupportMapFragment
 
         mapFragment.getMapAsync(this)
 
@@ -107,18 +108,18 @@ class Map : Fragment(), OnMapReadyCallback {
 
         //위치 권한 허용되어있는지 다시 확인->map.isMyLocationEnabled=true사용하려면 체크해줘야함
         if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            == PackageManager.PERMISSION_GRANTED
+                        requireContext(),
+                        android.Manifest.permission.ACCESS_FINE_LOCATION
+                )
+                == PackageManager.PERMISSION_GRANTED
         ) {
             permissionGranted = true
         } else {
             //허용 안돼있으면 requestPermissions()호출; 여기서 자동으로 onRequestPermissionsResult()호출함
             ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
-                PERMISSION_ACCESS
+                    requireActivity(),
+                    arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
+                    PERMISSION_ACCESS
             )
         }
 
@@ -132,7 +133,7 @@ class Map : Fragment(), OnMapReadyCallback {
         map.isMyLocationEnabled = true
 
         var retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).addConverterFactory(
-            GsonConverterFactory.create()
+                GsonConverterFactory.create()
         ).build()
         var apiService = retrofit.create(ApiService::class.java)
 
@@ -141,18 +142,18 @@ class Map : Fragment(), OnMapReadyCallback {
         try {
             if (permissionGranted) {
                 locationClient.lastLocation
-                    .addOnSuccessListener { location: Location? ->
-                        val lat = location!!.latitude
-                        val lng = location.longitude
+                        .addOnSuccessListener { location: Location? ->
+                            val lat = location!!.latitude
+                            val lng = location.longitude
 
-                        //이미지 필요없이 옵션 사용해서 마커 추가
-                        map.addMarker(
-                            MarkerOptions().position(LatLng(lat, lng)).title("현재 내 위치")
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                        )
+                            //이미지 필요없이 옵션 사용해서 마커 추가
+                            map.addMarker(
+                                    MarkerOptions().position(LatLng(lat, lng)).title("현재 내 위치")
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                            )
 
-                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lng), 15f))
-                    }
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(lat, lng), 15f))
+                        }
             } else {
                 Log.d("curr location", "현재 위치 추적 불가")
             }
@@ -161,6 +162,8 @@ class Map : Fragment(), OnMapReadyCallback {
             Log.d("curr location", e.message.toString())
         }
 
+        //place_get.setOnClickListener { getPlace() }
+
         emergency.enqueue(object : Callback<List<mapInfo>> {
             override fun onResponse(call: Call<List<mapInfo>>, response: Response<List<mapInfo>>) {
                 if (response.isSuccessful) {
@@ -168,14 +171,14 @@ class Map : Fragment(), OnMapReadyCallback {
 
                     for (l in emergencyPadList) {
                         map.addMarker(
-                            MarkerOptions().position(
-                                LatLng(
-                                    l.latitude!!.toDouble(),
-                                    l.longitude!!.toDouble()
+                                MarkerOptions().position(
+                                        LatLng(
+                                                l.latitude!!.toDouble(),
+                                                l.longitude!!.toDouble()
+                                        )
                                 )
-                            )
-                                .title(l.name)
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                                        .title(l.name)
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                         )
                     }
                 }
@@ -185,8 +188,28 @@ class Map : Fragment(), OnMapReadyCallback {
                 Log.d("emergency map get", t.message.toString())
             }
         })
-        Log.d("fragment", "오류7")
     }
+
+//    private fun getPlace() {
+//        val placeId = "INSERT_PLACE_ID_HERE"
+//
+//        val placeFields = listOf(Place.Field.ID, Place.Field.NAME)
+//
+//        val request = FetchPlaceRequest.newInstance(placeId, placeFields)
+//
+//
+//        PlacesClient.fetchPlace(request)
+//                .addOnSuccessListener { response: FetchPlaceResponse ->
+//                    val place = response.place
+//                    Log.i("get place", "Place found: ${place.name}")
+//                }.addOnFailureListener { exception: Exception ->
+//                    if (exception is ApiException) {
+//                        Log.e("get plcae", "Place not found: ${exception.message}")
+//                        val statusCode = exception.statusCode
+//                    }
+//                }
+
+}
 
 //
 //    private fun requestLocation() {
@@ -241,5 +264,3 @@ class Map : Fragment(), OnMapReadyCallback {
 //            e.printStackTrace()
 //        }
 //    }
-
-}

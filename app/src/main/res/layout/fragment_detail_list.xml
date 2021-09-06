@@ -25,7 +25,7 @@
                 android:layout_gravity="center_horizontal"
                 android:orientation="vertical">
                 <ImageView
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:id="@+id/detailimg"
@@ -33,17 +33,16 @@
                     />
 
                 <TextView
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:text="시크릿데이 샬롯 팬티라이너 롱"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:id="@+id/detailname"
-                    android:layout_marginBottom="25dp"/>
+                    android:layout_marginBottom="15dp"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -74,17 +73,15 @@
             </LinearLayout>
 
             <LinearLayout
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
                 <TextView
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="제조사"
                     android:textSize="15dp"/>
 
@@ -96,18 +93,16 @@
                     android:id="@+id/detailma"
                     android:text=" (주)중원주식회사"
                     android:textSize="15dp"/>
-
             </LinearLayout>
 
-
-
             <View
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#E1DCDC"/>
+
             <LinearLayout
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -117,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="성분"
-                    android:textSize="22dp"/>
+                    android:textSize="18dp"/>
                 <ImageButton
                     android:layout_marginLeft="300dp"
                     android:layout_gravity="right"
@@ -128,13 +123,12 @@
                     />
             </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
@@ -190,18 +184,18 @@
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_height="100dp"
-                android:id="@+id/recy"/>
+                android:layout_marginBottom="40dp"
+                android:layout_weight="1"
+                android:id="@+id/recy"
+                android:layout_height="0dp" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dp">
                 <TextView
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"

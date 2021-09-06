@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.String.join
 
 class Detail_IngreFragment : Fragment() {
     private lateinit var adapter:IngreAdapter
@@ -143,7 +144,16 @@ class Detail_IngreFragment : Fragment() {
                             var dlg = AlertDialog.Builder(requireContext())
                             var dialogView = View.inflate(context, R.layout.effectdialog, null)
                             dlg.setView(dialogView)
-                            dialogView.effectds.setText(effects.get(position))
+
+                            var elist=effects.get(position).split(",")
+
+                            var effect=""
+                            for(e in elist){
+                                effect=effect+"-"+e+"\n"
+                            }
+                            Log.d("effects",effect)
+
+                            dialogView.effectds.setText(effect)
 
                             dlg.setPositiveButton("확인") { dialog, which -> }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 
 import kotlinx.android.synthetic.main.incredient_item.view.*
@@ -33,10 +34,9 @@ class ListdetailAdapter(var items:MutableList<List_IngreItem>) : RecyclerView.Ad
             itemView.start.text = item.low.toString()
             itemView.middle.text = item.value.toString()
             itemView.end.text = item.high.toString()
-            var a=item.detection!!*100
-            var b=item.high*100
-            itemView.sb_storemainoptiondistance_distance.setProgress(a.toInt(),false)
-            itemView.sb_storemainoptiondistance_distance.max=b.toInt()
+            itemView.detect.text=item.detection.toString()
+            itemView.sb_storemainoptiondistance_distance.setProgress(item.detection!!.toInt(),false)
+            itemView.sb_storemainoptiondistance_distance.max=item.high.toInt()
         }
     }
 

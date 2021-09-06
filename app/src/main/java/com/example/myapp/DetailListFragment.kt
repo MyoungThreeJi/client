@@ -20,6 +20,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.URL
 import java.net.URLDecoder
+import kotlin.math.roundToInt
 
 class DetailListFragment(position: Int) : Fragment() {
     private lateinit var adapter: ListdetailAdapter
@@ -150,10 +151,13 @@ class DetailListFragment(position: Int) : Fragment() {
                             sum = sum + score
                         }
                     }
-                    //Log.d("scores",scoreList.toString())
-                    review_score.text = sum.div(scoreList.size).toString()
-                    score_star.rating = sum.div(scoreList.size).toFloat()
-                    //Log.d("scores",sum.div(scoreList.size).toString())
+                    if(scoreList.size!=0) {
+                        review_score.text="%.3f".format(sum.div(scoreList.size))
+                        score_star.rating = "%.3f".format(sum.div(scoreList.size)).toFloat()
+                    }
+                    else{
+                        review_score.text = "등록된 후기가 없습니다"
+                    }
                 }
             }
 

@@ -36,6 +36,10 @@
             android:text=" &gt;"
             />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp">
     <TextView
         android:layout_marginTop="15dp"
         android:textColor="@color/black"
@@ -43,7 +47,6 @@
         android:id="@+id/effectds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        />
-
+        android:text="" />
+    </LinearLayout>
 </LinearLayout>
