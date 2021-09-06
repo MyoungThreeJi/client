@@ -13,10 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.common.api.ApiException
+import androidx.core.view.isVisible
 import com.google.android.gms.location.*
 import com.google.android.gms.location.places.*
 import com.google.android.gms.maps.*
@@ -31,7 +33,10 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
+import noman.googleplaces.Place;
+import noman.googleplaces.PlaceType
+import noman.googleplaces.PlacesException;
+import noman.googleplaces.PlacesListener;
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -128,6 +133,7 @@ class Map : Fragment(), OnMapReadyCallback {
         placeDetectionClient = Places.getPlaceDetectionClient(requireActivity())
 
         map.mapType = GoogleMap.MAP_TYPE_NORMAL
+
         map.uiSettings.isZoomControlsEnabled = true
 
         map.isMyLocationEnabled = true
@@ -177,18 +183,37 @@ class Map : Fragment(), OnMapReadyCallback {
                                                 l.longitude!!.toDouble()
                                         )
                                 )
-                                        .title(l.name)
-                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                                .title(l.name)
+                                    .snippet(l.address+"\n"+l.Phone)
+
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                         )
                     }
                 }
-            }
+         
+
+                  map.setOnMarkerClickListener(object : GoogleMap.OnMarkerClickListener {
+                        override fun onMarkerClick(marker: Marker): Boolean {
+                           ginfo.isVisible=true
+
+                            var lt = marker.position.latitude
+                            var lg = marker.position.longitude
+                            var place = LatLng(lt, lg)
+                            gname.text=marker.title
+                            glocation.text=marker.snippet
+
+                            map.moveCamera(CameraUpdateFactory.newLatLng(place))
+                            return false
+                        }
+                    })
+                }
 
             override fun onFailure(call: Call<List<mapInfo>>, t: Throwable) {
                 Log.d("emergency map get", t.message.toString())
             }
         })
     }
+}
 
 //    private fun getPlace() {
 //        val placeId = "INSERT_PLACE_ID_HERE"
@@ -209,7 +234,6 @@ class Map : Fragment(), OnMapReadyCallback {
 //                    }
 //                }
 
-}
 
 //
 //    private fun requestLocation() {
