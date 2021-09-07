@@ -32,11 +32,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-import noman.googleplaces.Place;
-import noman.googleplaces.PlaceType
-import noman.googleplaces.PlacesException;
-import noman.googleplaces.PlacesListener;
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -75,8 +70,7 @@ class Map : Fragment(), OnMapReadyCallback {
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
-            grantResults: IntArray
-    ) {
+            grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             PERMISSION_ACCESS -> {
@@ -114,10 +108,8 @@ class Map : Fragment(), OnMapReadyCallback {
         //위치 권한 허용되어있는지 다시 확인->map.isMyLocationEnabled=true사용하려면 체크해줘야함
         if (ContextCompat.checkSelfPermission(
                         requireContext(),
-                        android.Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                == PackageManager.PERMISSION_GRANTED
-        ) {
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
             permissionGranted = true
         } else {
             //허용 안돼있으면 requestPermissions()호출; 여기서 자동으로 onRequestPermissionsResult()호출함
@@ -183,30 +175,30 @@ class Map : Fragment(), OnMapReadyCallback {
                                                 l.longitude!!.toDouble()
                                         )
                                 )
-                                .title(l.name)
-                                    .snippet(l.address+"\n"+l.Phone)
+                                        .title(l.name)
+                                        .snippet(l.address + "\n" + l.Phone)
 
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                         )
                     }
                 }
-         
 
-                  map.setOnMarkerClickListener(object : GoogleMap.OnMarkerClickListener {
-                        override fun onMarkerClick(marker: Marker): Boolean {
-                           ginfo.isVisible=true
 
-                            var lt = marker.position.latitude
-                            var lg = marker.position.longitude
-                            var place = LatLng(lt, lg)
-                            gname.text=marker.title
-                            glocation.text=marker.snippet
+                map.setOnMarkerClickListener(object : GoogleMap.OnMarkerClickListener {
+                    override fun onMarkerClick(marker: Marker): Boolean {
+                        ginfo.isVisible = true
 
-                            map.moveCamera(CameraUpdateFactory.newLatLng(place))
-                            return false
-                        }
-                    })
-                }
+                        var lt = marker.position.latitude
+                        var lg = marker.position.longitude
+                        var place = LatLng(lt, lg)
+                        gname.text = marker.title
+                        glocation.text = marker.snippet
+
+                        map.moveCamera(CameraUpdateFactory.newLatLng(place))
+                        return false
+                    }
+                })
+            }
 
             override fun onFailure(call: Call<List<mapInfo>>, t: Throwable) {
                 Log.d("emergency map get", t.message.toString())
@@ -231,7 +223,6 @@ class Map : Fragment(), OnMapReadyCallback {
 //                    if (exception is ApiException) {
 //                        Log.e("get plcae", "Place not found: ${exception.message}")
 //                        val statusCode = exception.statusCode
-//                        TODO("Handle error with given status code")
 //                    }
 //                }
 
