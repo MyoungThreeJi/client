@@ -30,7 +30,7 @@
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/sang" />
+           />
 
                 <TextView
                     android:id="@+id/detailname"
@@ -136,7 +136,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
                     android:text="성분분석 랭킹"
                     android:textColor="@color/black"
                     android:textSize="17dp" />
@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="3위"
-                    android:textColor="#F9B7CC"
+                    android:textColor="#FF5675"
                     android:textSize="17dp" />
 
             </LinearLayout>
@@ -160,7 +160,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
                     android:text="성분분석 점수"
                     android:textColor="@color/black"
                     android:textSize="17dp" />
@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="8.9"
-                    android:textColor="#F9B7CC"
+                    android:textColor="#FF5675"
                     android:textSize="17dp" />
             </LinearLayout>
 
@@ -196,7 +196,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="25dp"
                         android:text="성분 이름"/>
                     <TextView
                         android:layout_width="wrap_content"
@@ -231,7 +231,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recy"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="95dp"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black" />
             </LinearLayout>

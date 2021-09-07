@@ -38,14 +38,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="브랜드명"
-                    android:textSize="15sp"
+                    android:textSize="13sp"
                     android:layout_marginTop="10dp"/>
                 <TextView
                     android:id="@+id/lproduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="상품명"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textColor="@color/black"/>
             </LinearLayout>
             <LinearLayout
@@ -55,13 +55,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/heart2"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="17dp"/>
                 <TextView
                     android:id="@+id/score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="성분분석점수"
                     android:layout_marginTop="22dp"
+                    android:layout_marginRight="10dp"
                     android:textColor="@color/black"/>
             </LinearLayout>
         </LinearLayout>

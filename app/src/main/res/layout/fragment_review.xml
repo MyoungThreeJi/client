@@ -28,9 +28,10 @@
         android:layout_marginTop="20dp">
 
         <TextView
+            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="리뷰 개수-" />
+            android:text="리뷰 개수" />
 
         <TextView
             android:id="@+id/num_review"
@@ -41,7 +42,7 @@
             android:id="@+id/reg_review"
             android:layout_width="70dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="250dp"
+            android:layout_marginLeft="230dp"
             android:backgroundTint="@color/pink"
             android:text="+리뷰"
             android:textColor="@color/black" />

@@ -68,7 +68,7 @@ class ReviewFragment (id:Int): Fragment(){
                     }
 
                     adapter = reviewInfoAdapter(reviews)
-                    num_review.text=adapter.itemCount.toString()
+                    num_review.text=" "+adapter.itemCount.toString()+"개"
                     reviewre.adapter = adapter
                 }
             }
