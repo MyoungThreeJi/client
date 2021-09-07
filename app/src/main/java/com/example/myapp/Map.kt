@@ -206,6 +206,7 @@ class Map : Fragment(), OnMapReadyCallback {
 //                    if (exception is ApiException) {
 //                        Log.e("get plcae", "Place not found: ${exception.message}")
 //                        val statusCode = exception.statusCode
+//                        TODO("Handle error with given status code")
 //                    }
 //                }
 

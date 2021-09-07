@@ -155,8 +155,8 @@ class DetailListFragment(position: Int) : Fragment() {
                         }
                     }
                     if(scoreList.size!=0) {
-                        review_score.text="%.3f".format(sum.div(scoreList.size))
-                        score_star.rating = "%.3f".format(sum.div(scoreList.size)).toFloat()
+                        review_score.text="%.2f".format(sum.div(scoreList.size))
+                        score_star.rating = "%.2f".format(sum.div(scoreList.size)).toFloat()
                     }
                     else{
                         review_score.text = "등록된 후기가 없습니다"
