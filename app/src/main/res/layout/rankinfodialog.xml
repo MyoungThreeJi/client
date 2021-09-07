@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+
+  >
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/dtext"
+    android:text="  해당 성분점수는 식약처의 '생리대 기업 협의체 자체 VOCs 모니터링  결과'에 바탕을 두었으며 성분별 평균값을 100 기준으로 환산된 결과임을 알려드립니다." />
+
+    </LinearLayout>
+</LinearLayout>

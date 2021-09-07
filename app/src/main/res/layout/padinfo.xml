@@ -10,6 +10,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/lrank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1위"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"/>
             <ImageView
                 android:id="@+id/limg"
                 android:layout_width="60dp"

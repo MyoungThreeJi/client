@@ -37,13 +37,4 @@ class ListdetailAdapter(var items:MutableList<List_IngreItem>) : RecyclerView.Ad
             itemView.detect.text=item.detection.toString()
         }
     }
-
-
-
-
-
-
-
-
-
 }

@@ -8,9 +8,11 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,6 +20,7 @@
             android:layout_gravity="center_vertical"
             android:textSize="25dp"
             android:textColor="@color/black"/>
+
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,19 +30,24 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/img1"
+            android:id="@+id/searchlist"
             android:src="@drawable/search"
-            android:layout_toLeftOf="@+id/img2"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/img2"
-            android:src="@drawable/heart"
-            android:layout_alignParentRight="true"/>
-    </RelativeLayout>
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+           />
 
+    </RelativeLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:id="@+id/rankinfos"
+    android:layout_marginTop="10dp"
+    android:text="          성분분석 랭킹은 어떻게 측정된 걸까요? "
+    android:textSize="20dp"
+    android:background="@color/pink"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView1"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
