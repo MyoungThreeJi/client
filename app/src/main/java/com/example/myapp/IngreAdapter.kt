@@ -42,10 +42,6 @@ class IngreAdapter(var items:MutableList<parent>):RecyclerView.Adapter<IngreAdap
     override fun getItemCount()=items.size
 
     inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-
-
-
-
         fun setItem(item:parent){
             itemView.tv_list_title.text = item.name
             itemView.average.text = item.average.toString()
@@ -56,8 +52,6 @@ class IngreAdapter(var items:MutableList<parent>):RecyclerView.Adapter<IngreAdap
                         else{
                 itemView.dimage.setImageResource(R.drawable.low)
                         }
-
-
         }
     }
 }

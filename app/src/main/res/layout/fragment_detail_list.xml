@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_height="match_parent"
     tools:context=".DetailListFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="560dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -18,50 +18,51 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:background="@layout/dialog_background_round"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
                 android:layout_gravity="center_horizontal"
+                android:background="@layout/dialog_background_round"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
+
                 <ImageView
-                    android:layout_marginTop="50dp"
+                    android:id="@+id/detailimg"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
-                    android:id="@+id/detailimg"
-                    android:src="@drawable/sang"
-                    />
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/sang" />
 
                 <TextView
-                    android:layout_marginTop="15dp"
+                    android:id="@+id/detailname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
                     android:text="시크릿데이 샬롯 팬티라이너 롱"
-                    android:textSize="20dp"
-                    android:id="@+id/detailname"
-                    android:layout_marginBottom="25dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginTop="30dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
                     android:text="평점"
-                    android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp" />
 
                 <RatingBar
                     android:id="@+id/score_star"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
                     android:layout_width="250dp"
-                    android:layout_height="40sp"/>
+                    android:layout_height="40sp"
+                    android:layout_marginLeft="10dp"/>
+
                 <TextView
                     android:id="@+id/review_score"
                     android:layout_width="wrap_content"
@@ -69,86 +70,85 @@
                     android:layout_marginTop="15dp"
                     android:text="4.25"
                     android:textColor="@color/black"
-                    android:textSize="15dp"/>
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
             <LinearLayout
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
                     android:text="제조사"
-                    android:textSize="15dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
                 <TextView
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
+                    android:id="@+id/detailma"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/detailma"
+                    android:layout_marginLeft="10dp"
                     android:text=" (주)중원주식회사"
-                    android:textSize="15dp"/>
-
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
             </LinearLayout>
-
-
 
             <View
-                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="#E1DCDC"/>
+                android:layout_marginTop="15dp"
+                android:background="#E1DCDC" />
+
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
+
                 <TextView
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="성분"
-                    android:textSize="22dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
                 <ImageButton
-                    android:layout_marginLeft="300dp"
-                    android:layout_gravity="right"
+                    android:id="@+id/gotodi"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:id="@+id/gotodi"
-                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    />
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="300dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
 
                 <TextView
-
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="성분분석 랭킹"
-                    android:textSize="17dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+
                 <TextView
+                    android:id="@+id/drank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3위"
-                    android:id="@+id/drank"
                     android:layout_marginLeft="10dp"
+                    android:text="3위"
                     android:textColor="#F9B7CC"
-                    android:textSize="17dp"/>
+                    android:textSize="17dp" />
 
             </LinearLayout>
 
@@ -158,67 +158,106 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="성분분석 점수"
-                    android:textSize="17dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+
                 <TextView
+                    android:id="@+id/dscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/dscore"
                     android:layout_marginLeft="10dp"
                     android:text="8.9"
                     android:textColor="#F9B7CC"
-                    android:textSize="17dp"/>
+                    android:textSize="17dp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-            <TextView
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="성분구성"
-                android:textSize="17dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/black"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_height="100dp"
-                android:id="@+id/recy"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="성분구성"
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="성분 이름"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="260dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="최소값"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="180dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="평균값"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="100dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="최대값"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="검출량"/>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:text="리뷰"
-                    android:textSize="22dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="18dp" />
+
                 <ImageButton
                     android:id="@+id/gotoreview"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="300dp"
-                    android:layout_gravity="right"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
-                    />
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
