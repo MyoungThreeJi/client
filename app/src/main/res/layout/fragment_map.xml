@@ -11,13 +11,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="440dp"
         android:id="@+id/sanitarypad_map"
         tools:context=".Map"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>
 <LinearLayout
     android:id="@+id/ginfo"
-    android:visibility="gone"
+   android:visibility="invisible"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:background="@color/pink"
