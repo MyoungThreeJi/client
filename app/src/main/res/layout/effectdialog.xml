@@ -13,28 +13,27 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
+
         <TextView
-            android:textColor="#E91E63"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="&lt; "
-          />
+            android:textColor="#E13A61"
+            android:textSize="20dp" />
+
         <TextView
-            android:textColor="#E91E63"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="부작용"
-          />
+            android:textColor="#E13A61"
+            android:textSize="20dp" />
 
         <TextView
-            android:textColor="#E91E63"
-            android:textSize="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" &gt;"
-            />
+            android:textColor="#E13A61"
+            android:textSize="20dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,41 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="330dp"
+    android:layout_height="480dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="10dp"
-    android:background="@drawable/dialog_layout">
+    android:background="@drawable/dialog_layout"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="리뷰를 작성해 주세요!"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp">
+            android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:textSize="15dp"
+                android:text="착용감"
                 android:textColor="@color/black"
-                android:text="착용감" />
+                android:textSize="14dp" />
+
             <RatingBar
                 android:id="@+id/rat1"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="1"
-                android:isIndicator="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:isIndicator="false"
+                android:stepSize="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -43,110 +58,120 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:textSize="15dp"
+                android:text="흡수력"
                 android:textColor="@color/black"
-                android:text="흡수력"/>
+                android:textSize="14dp" />
+
             <RatingBar
                 android:id="@+id/rat2"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="1"
-                android:isIndicator="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:isIndicator="false"
+                android:stepSize="1" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:textSize="15dp"
+                android:text="샘방지"
                 android:textColor="@color/black"
-                android:text="샘방지"/>
+                android:textSize="14dp" />
+
             <RatingBar
                 android:id="@+id/rat3"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="1"
-                android:isIndicator="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:isIndicator="false"
+                android:stepSize="1" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="20dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:textSize="15dp"
+                android:text="가성비"
                 android:textColor="@color/black"
-                android:text="가성비"/>
+                android:textSize="14dp" />
+
             <RatingBar
                 android:id="@+id/rat4"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:stepSize="1"
-                android:isIndicator="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:isIndicator="false"
+                android:stepSize="1" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        android:layout_weight="1"
-        android:layout_marginRight="20dp">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:textSize="15dp"
+            android:layout_marginLeft="45dp"
+            android:text="리뷰"
             android:textColor="@color/black"
-            android:text="리뷰"/>
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/r_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:background="@color/white"
             android:backgroundTint="@color/white"
             android:inputType="textMultiLine"
             android:lines="5"
-            android:background="@color/white"/>
+            android:padding="5dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginRight="20dp">
+        android:layout_height="match_parent"
+        android:gravity="center">
+
         <Button
             android:id="@+id/post_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:backgroundTint="#FF8CA7"
             android:text="Save"
-            android:textSize="15dp"
-            android:backgroundTint="#E91E63"/>
+            android:textSize="15dp" />
     </LinearLayout>
 </LinearLayout>

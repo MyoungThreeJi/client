@@ -22,31 +22,31 @@
         android:padding="16dp"
         android:text="위험성분"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/average"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="70dp"
         android:text="평균값"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/detection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="10dp"
         android:text="검출량"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/iv_arrow_drop"

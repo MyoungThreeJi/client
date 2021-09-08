@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:orientation="vertical">
 
         <TextView
@@ -28,7 +29,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-25dp"
+        android:layout_marginTop="-35dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -44,10 +45,13 @@
     <TextView
         android:id="@+id/rankinfos"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:background="@color/pink"
-        android:text="              성분분석 랭킹은 어떻게 측정된 걸까요? "
-        android:textSize="18dp" />
+        android:padding="5dp"
+        android:text="성분분석 랭킹은 어떻게 측정된 걸까요?"
+        android:textAlignment="center"
+        android:textSize="16dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView1"

@@ -10,12 +10,11 @@
             android:id="@+id/iname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="핵산"
-            android:textSize="15dp"
-       />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/min"

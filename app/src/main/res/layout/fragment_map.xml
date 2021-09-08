@@ -8,39 +8,39 @@
     tools:context=".Map">
 
     <fragment
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="440dp"
         android:id="@+id/sanitarypad_map"
-        tools:context=".Map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"/>
-<LinearLayout
-    android:id="@+id/ginfo"
-   android:visibility="invisible"
-    android:layout_width="match_parent"
-    android:layout_height="110dp"
-    android:background="@color/pink"
-    android:orientation="vertical">
-    <TextView
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="강동청소년센터_시립"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:id="@+id/gname"/>
-    <TextView
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="강동청소년센터_시립"
-        android:id="@+id/glocation"/>
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        tools:context=".Map" />
+
+    <LinearLayout
+        android:id="@+id/ginfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/pink"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+            android:id="@+id/gname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:text="강동청소년센터_시립"
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/glocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="강동청소년센터_시립" />
 
 
-
-</LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

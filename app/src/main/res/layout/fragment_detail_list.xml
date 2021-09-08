@@ -44,7 +44,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -59,9 +59,14 @@
 
                 <RatingBar
                     android:id="@+id/score_star"
-                    android:layout_width="250dp"
+                    style="@style/Widget.AppCompat.RatingBar.Indicator"
+                    android:layout_width="wrap_content"
                     android:layout_height="40sp"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginTop="5dp"
+                    android:numStars="5"
+                    android:scaleX=".8"
+                    android:scaleY=".8"
+                    android:isIndicator="true"/>
 
                 <TextView
                     android:id="@+id/review_score"
@@ -139,16 +144,16 @@
                     android:layout_marginLeft="30dp"
                     android:text="성분분석 랭킹"
                     android:textColor="@color/black"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/drank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="3위"
+                    android:text="3"
                     android:textColor="#FF5675"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
 
             </LinearLayout>
 
@@ -163,16 +168,16 @@
                     android:layout_marginLeft="30dp"
                     android:text="성분분석 점수"
                     android:textColor="@color/black"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/dscore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="8.9"
+                    android:text="128"
                     android:textColor="#FF5675"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -184,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:text="성분구성"
                     android:textColor="@color/black"
                     android:textSize="17dp" />
@@ -193,11 +198,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:text="성분 이름"/>
+                        android:text="성분 이름" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -237,10 +243,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -255,7 +262,6 @@
                     android:layout_height="30dp"
                     android:layout_gravity="right"
                     android:layout_marginLeft="300dp"
-                    android:layout_marginTop="20dp"
                     android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
             </LinearLayout>
         </LinearLayout>
